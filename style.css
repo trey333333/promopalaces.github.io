@@ -1,7 +1,41 @@
+/* General Typography and Page */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f8f8;
+    color: #333;
 }
 
+/* Header + Navbar */
+header {
+    background: #1e3a8a;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Card Styling */
 .card {
     transition: transform 0.2s;
 }
@@ -10,57 +44,38 @@ body {
     transform: scale(1.05);
 }
 
-.card h3 {
+.card h3, .card-title {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
+/* 🔧 Image Fix: Uniform display for different image sizes */
 .card-img-top {
-    height: 150px;
-    object-fit: cover;
+    height: 200px;
     width: 100%;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 10px;
 }
 
-.navbar-nav .nav-link {
-    font-size: 1rem;
-    padding: 0.5rem 0.75rem;
-}
-
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-
-@media (max-width: 991px) {
-    .navbar-nav {
-        text-align: center;
-    }
-}
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f8f8f8;
-    color: #333;
-}
-header {
-    background: #1e3a8a;
-    color: white;
-    padding: 1em;
-    text-align: center;
-}
-nav a {
-    margin: 0 15px;
-    color: white;
-    text-decoration: none;
-}
-nav a:hover {
-    text-decoration: underline;
-}
+/* Main Content */
 main {
     padding: 20px;
     text-align: center;
 }
+
+/* Lists */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+/* Footer */
 footer {
     background: #1e3a8a;
     color: white;
@@ -70,15 +85,17 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Logo Image */
 .logo {
     max-width: 150px;
     margin-bottom: 10px;
 }
-ul {
-    list-style: none;
-    padding: 0;
+
+/* Responsive Navbar */
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: center;
+    }
 }
-ul li {
-    margin: 10px 0;
-    font-size: 1.2em;
-}
+
