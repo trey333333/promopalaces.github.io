@@ -35,6 +35,27 @@
       display: none;
       z-index: 1000;
     }
+    .navbar .form-control {
+      min-width: 300px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .btn-animated {
+      animation: pulse 2s infinite;
+    }
+    .center-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -53,11 +74,12 @@
       <main class="col-md-10 py-4">
         <!-- your promotional section -->
 
-        <h4 class="mb-4" id="featured">Monthly Featured Products</h4>
+        <div class="center-btn">
+          <a href="#featured" class="btn btn-warning btn-lg btn-animated">Shop Now!</a>
+        </div>
+
+        <h4 class="mb-4 mt-5" id="featured">Monthly Featured Products</h4>
         <div class="row g-4 mb-5">
-          <!-- FEATURED PRODUCT GRID -->
-          <!-- Each card uses data-aos="fade-up" for animation -->
-          <!-- START PRODUCTS -->
           <script>
             const products = [
               { img: 'apparel.png', title: 'Custom Apparel', text: 'Branded shirts, jackets, and more.', link: 'apparel' },
@@ -82,13 +104,17 @@
                   <div class="card-body">
                     <h6 class="card-title">${p.title}</h6>
                     <p class="card-text text-muted">${p.text}</p>
-                    <a href="https://www.executiveadvertising.com/${p.link}?aid=1056" class="btn btn-warning w-100" target="_blank">Shop Now</a>
+                    <a href="https://www.executiveadvertising.com/${p.link}?aid=1056" class="btn btn-warning w-100">Shop Now</a>
                   </div>
                 </div>
               </div>
             `).join(''));
           </script>
-          <!-- END PRODUCTS -->
+
+          <div class="center-btn">
+            <a href="#" class="btn btn-success btn-lg btn-animated">Get Started Today!</a>
+          </div>
+
         </div>
       </main>
     </div>
@@ -138,4 +164,3 @@
   </script>
 </body>
 </html>
-
