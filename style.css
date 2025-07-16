@@ -139,3 +139,10 @@ footer small {
   text-align: center;
   height: 100%;
 }
+/* Center image and text in hero columns */
+.hero-banner .col-md-3 a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
