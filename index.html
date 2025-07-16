@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PromoPalaces - Home</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <link rel="stylesheet" href="style.css"> <!-- Note: Ensure style.css exists or remove if unused -->
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -33,9 +32,10 @@
       font-weight: 600;
     }
     .card-img-top {
-      height: 200px;
-      object-fit: cover;
-      width: 100%;
+      height: 200px; /* Fixed height */
+      object-fit: contain; /* Changed from cover to contain */
+      width: 100%; /* Maintains aspect ratio within width */
+      max-width: 100%; /* Prevents stretching beyond natural width */
     }
     .toggle-btn {
       cursor: pointer;
@@ -111,27 +111,27 @@
 
         <h4 class="mb-4">Monthly Featured Products</h4>
         <div class="row g-4 mb-5">
-     <div class="col-md-3">
-  <div class="card h-100">
-    <img src="images/Apparel.png" class="card-img-top" alt="Apparel">
-    <div class="card-body">
-      <h6 class="card-title">Custom Apparel</h6>
-      <p class="card-text text-muted">Branded shirts, jackets, and more.</p>
-      <a href="https://www.executiveadvertising.com/apparel?aid=1056" class="btn btn-sm btn-warning w-100" target="_blank">Shop Now</a>
-    </div>
-  </div>
-</div>
-
-<div class="col-md-3">
-  <div class="card h-100">
-    <img src="images/137415_t.jpg" class="card-img-top" alt="Drinkware">
-    <div class="card-body">
-      <h6 class="card-title">Drinkware</h6>
-      <p class="card-text text-muted">Tumblers, mugs & bottles with logos.</p>
-      <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" class="btn btn-sm btn-warning w-100" target="_blank">Shop Now</a>
-    </div>
-  </div>
-</div>
+          <div class="col-md-3">
+            <div class="card h-100">
+              <img src="images/Apparel.png" class="card-img-top" alt="Apparel">
+              <div class="card-body">
+                <h6 class="card-title">Custom Apparel</h6>
+                <p class="card-text text-muted">Branded shirts, jackets, and more.</p>
+                <a href="https://www.executiveadvertising.com/apparel?aid=1056" class="btn btn-sm btn-warning w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100">
+              <img src="images/137415_t.jpg" class="card-img-top" alt="Drinkware">
+              <div class="card-body">
+                <h6 class="card-title">Drinkware</h6>
+                <p class="card-text text-muted">Tumblers, mugs & bottles with logos.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" class="btn btn-sm btn-warning w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   </div>
