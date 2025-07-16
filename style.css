@@ -51,9 +51,9 @@ nav a:hover {
 
 /* 🔧 Image Fix: Uniform display for different image sizes */
 .card-img-top {
-    width: 100%; /* Full width of the card */
-    object-fit: scale-down; /* Fits image without cropping, respects natural size */
-    max-height: 200px; /* Caps height to prevent oversized images */
+    width: 100%;
+    object-fit: scale-down;
+    max-height: 200px;
     background-color: #fff;
     padding: 10px;
 }
@@ -66,17 +66,20 @@ main {
 
 /* Sidebar */
 .sidebar {
-    height: 100vh;
-    position: sticky;
-    top: 0;
     padding-top: 1rem;
     border-right: 1px solid #dee2e6;
+    /* Remove fixed height and sticky positioning */
+    height: auto;
+    position: relative;
+    max-height: 80vh; /* Set a max height with scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .sidebar .nav-link {
     color: #333;
     padding: 10px 16px;
     font-size: 0.95rem;
+    display: block; /* Ensure each link takes full width */
 }
 
 .sidebar .nav-link:hover {
@@ -101,9 +104,9 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    position: relative;
+    bottom: auto;
 }
 
 /* Logo Image */
@@ -120,9 +123,30 @@ footer {
     display: block;
 }
 
-/* Responsive Navbar */
+/* Responsive Adjustments */
 @media (max-width: 991px) {
     .navbar-nav {
         text-align: center;
+    }
+    .sidebar {
+        max-height: 60vh; /* Adjust max height for mobile */
+        border-right: none;
+        padding: 0;
+    }
+    .sidebar .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .card-img-top {
+        max-height: 150px;
+    }
+    main {
+        padding: 10px;
+    }
+    .row g-4 {
+        margin: 0 -5px;
+    }
+    .col-md-3 {
+        padding: 0 5px;
     }
 }
