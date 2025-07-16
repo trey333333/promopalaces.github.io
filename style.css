@@ -183,3 +183,18 @@ section .btn-success {
     font-size: 1.5rem;
   }
 }
+/* Center and style two-line hero headline */
+.hero-headline {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Responsive font size for smaller screens */
+@media (max-width: 768px) {
+  .hero-headline {
+    font-size: 1.7rem;
+  }
+}
