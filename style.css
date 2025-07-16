@@ -7,24 +7,30 @@ body {
     color: #333;
 }
 
+/* Hero Banner */
+.hero-banner {
+    background: url('https://via.placeholder.com/1200x300') no-repeat center center/cover; /* Replace with your image */
+    padding: 60px 20px;
+    position: relative;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.hero-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-banner .lead {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-banner .btn-lg {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+}
+
 /* Header + Navbar */
-header {
-    background: #1e3a8a;
-    color: white;
-    padding: 1em;
-    text-align: center;
-}
-
-nav a {
-    margin: 0 15px;
-    color: white;
-    text-decoration: none;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
@@ -37,25 +43,56 @@ nav a:hover {
 
 /* Card Styling */
 .card {
-    transition: transform 0.2s;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover {
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.card h3, .card-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* 🔧 Image Fix: Uniform display for different image sizes */
 .card-img-top {
     width: 100%;
     object-fit: scale-down;
     max-height: 200px;
     background-color: #fff;
     padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Buttons with Flair */
+.btn-flare {
+    background: linear-gradient(45deg, #ffca28, #ff9800);
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-flare:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #28a745, #218838);
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.btn-success:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Main Content */
@@ -68,18 +105,17 @@ main {
 .sidebar {
     padding-top: 1rem;
     border-right: 1px solid #dee2e6;
-    /* Remove fixed height and sticky positioning */
     height: auto;
     position: relative;
-    max-height: 80vh; /* Set a max height with scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .sidebar .nav-link {
     color: #333;
     padding: 10px 16px;
     font-size: 0.95rem;
-    display: block; /* Ensure each link takes full width */
+    display: block;
 }
 
 .sidebar .nav-link:hover {
@@ -109,12 +145,6 @@ footer {
     bottom: auto;
 }
 
-/* Logo Image */
-.logo {
-    max-width: 150px;
-    margin-bottom: 10px;
-}
-
 /* Toggle Button */
 .toggle-btn {
     cursor: pointer;
@@ -129,7 +159,7 @@ footer {
         text-align: center;
     }
     .sidebar {
-        max-height: 60vh; /* Adjust max height for mobile */
+        max-height: 60vh;
         border-right: none;
         padding: 0;
     }
@@ -139,6 +169,16 @@ footer {
     }
     .card-img-top {
         max-height: 150px;
+    }
+    .hero-banner h1 {
+        font-size: 2rem;
+    }
+    .hero-banner .lead {
+        font-size: 1rem;
+    }
+    .hero-banner .btn-lg {
+        font-size: 1rem;
+        padding: 8px 16px;
     }
     main {
         padding: 10px;
