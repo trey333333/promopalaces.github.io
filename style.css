@@ -146,3 +146,15 @@ footer small {
   align-items: center;
   text-align: center;
 }
+/* Center the Shop Now button in the hero banner */
+.hero-banner .btn {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Center the Get Started Today button */
+section .btn-success {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
