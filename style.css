@@ -124,3 +124,9 @@ footer small {
   font-size: 0.85rem;
   color: #ccc;
 }
+/* Responsive wider search bar */
+@media (min-width: 768px) {
+  .navbar form .form-control {
+    min-width: 350px;
+  }
+}
