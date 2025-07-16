@@ -1,16 +1,23 @@
-/* ==== Global Reset Enhancements ==== */
-body {
-  background-color: #f8f9fa;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* ==== Global Image Handling ==== */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* ==== Hero Banner ==== */
+/* ==== Fix for Navbar Logo Size ==== */
+.navbar-brand img {
+  height: 40px !important;
+  width: auto;
+  max-height: 40px;
+}
+
+/* ==== Hero Banner Styling ==== */
+.hero-banner {
+  background-color: #212529;
+  color: #fff;
+}
+
 .hero-banner h1 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -20,16 +27,26 @@ img {
   font-size: 1.2rem;
 }
 
-/* ==== Sidebar ==== */
+/* Limit and scale banner images (e.g. Sale & USA made) */
+.hero-banner img {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ==== Sidebar Styling ==== */
 .sidebar {
   border-right: 1px solid #dee2e6;
-  min-height: 100%;
   padding-top: 1rem;
+  min-height: 100%;
+  background-color: #fff;
 }
 
 .sidebar h6 {
   font-size: 0.875rem;
-  color: #333;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  color: #444;
 }
 
 .sidebar .nav-link {
@@ -58,7 +75,7 @@ img {
   text-decoration: underline;
 }
 
-/* ==== Product Cards ==== */
+/* ==== Product Card Styling ==== */
 .card-hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: none;
@@ -78,21 +95,14 @@ img {
   font-size: 0.85rem;
 }
 
-/* Image Handling for Cards */
+/* Product card images */
 .card-img-top {
   object-fit: contain;
   height: 180px;
   width: 100%;
 }
 
-/* Hero Banner Image Constraints */
-.hero-banner img {
-  max-height: 80px;
-  width: auto;
-  object-fit: contain;
-}
-
-/* ==== Buttons ==== */
+/* ==== Button Styling ==== */
 .btn-flare {
   font-size: 0.9rem;
   font-weight: 600;
@@ -104,12 +114,12 @@ img {
   color: #fff;
 }
 
-/* Featured Section */
+/* ==== Featured Section ==== */
 section.bg-white {
   background-color: #ffffff !important;
 }
 
-/* Footer */
+/* ==== Footer Styling ==== */
 footer small {
   font-size: 0.85rem;
   color: #ccc;
