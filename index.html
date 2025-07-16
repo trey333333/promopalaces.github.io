@@ -10,72 +10,32 @@
 
   <meta name="keywords" content="promotional products, custom promotional items, branded merchandise, custom apparel, branded drinkware, promotional pens, corporate gifts, trade show items, branded electronics, affordable branded giveaways, customized golf products, buy promotional products online, branded household goods, custom trade show giveaways">
   <meta name="description" content="Discover PromoPalaces for high-quality promotional products including custom apparel, branded drinkware, corporate gifts, trade show items, and more. Shop online with our curated catalog partnered with Executive Advertising.">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    .sticky-sidebar {
-      position: sticky;
-      top: 70px;
-    }
-    .card-hover {
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card-hover:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    }
-    #backToTopBtn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: none;
-      z-index: 1000;
-    }
-    .navbar .form-control {
-      min-width: 300px;
-      width: 100%;
-      max-width: 600px;
-    }
-    .btn-animated {
-      animation: pulse 2s infinite;
-    }
-    .center-btn {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-  </style>
 </head>
 <body>
+
   <!-- ✅ Hero Banner with Attention Grabbers -->
   <header class="hero-banner text-white py-5 position-relative bg-dark">
     <div class="container">
       <div class="row align-items-center text-center text-md-start">
+        <!-- Left: Sale & Closeout Items -->
         <div class="col-md-3 mb-4 mb-md-0 text-center">
           <a href="https://www.executiveadvertising.com/on-sale?aid=1056" target="_blank">
             <img src="images/stickergiant-sale.gif" alt="Sale & Closeout Items" class="img-fluid" style="max-height: 80px;">
             <div class="text-warning fw-bold mt-2">Sale & Closeout Items</div>
           </a>
         </div>
+
+        <!-- Center: Main Hero Message -->
         <div class="col-md-6">
           <h1 class="animate__animated animate__fadeInDown">Elevate Your Brand with PromoPalaces!</h1>
           <p class="lead animate__animated animate__fadeInUp">Discover top-notch promotional products to skyrocket your marketing.</p>
-          <div class="center-btn">
-            <a href="#featured" class="btn btn-warning btn-lg btn-animated">Shop Now!</a>
-          </div>
+          <a href="#featured" class="btn btn-warning btn-lg animate__animated animate__pulse animate__infinite" style="animation-duration: 2s;">Shop Now!</a>
         </div>
+
+        <!-- Right: USA Made Products -->
         <div class="col-md-3 mt-4 mt-md-0 text-center">
           <a href="https://www.executiveadvertising.com/made-in-usa?aid=1056" target="_blank">
             <img src="images/usamadeanimated.jpg" alt="USA Made Products" class="img-fluid" style="max-height: 80px;">
@@ -92,91 +52,200 @@
       <img src="logo.png" alt="PromoPalaces Logo - Promotional Products" height="40" class="me-2">
       <span class="fw-bold text-white">PromoPalaces</span>
     </a>
-    <form class="d-flex ms-auto w-100 justify-content-end" role="search" action="https://www.executiveadvertising.com/promotional-products/search/" method="get" target="_blank">
-      <input class="form-control me-2" type="search" name="keyword" placeholder="Search Promotional Products..." aria-label="Search">
-      <input type="hidden" name="aid" value="1056">
-      <button class="btn btn-warning" type="submit">Search</button>
-    </form>
+    <form class="d-flex ms-auto" role="search" action="https://www.executiveadvertising.com/promotional-products/search/" method="get" target="_blank">
+  <input class="form-control me-2" type="search" name="keyword" placeholder="Search Promotional Products..." aria-label="Search">
+  <input type="hidden" name="aid" value="1056">
+  <button class="btn btn-warning" type="submit">Search</button>
+</form>
   </nav>
 
   <!-- Main Layout -->
   <div class="container-fluid">
     <div class="row">
-      <aside class="col-md-2 sidebar bg-white sticky-sidebar">
-        <!-- your sidebar content goes here -->
-      </aside>
-      <main class="col-md-10 py-4">
-        <!-- your promotional section -->
-
-        <h4 class="mb-4 mt-5" id="featured">Monthly Featured Products</h4>
-        <div class="row g-4 mb-5">
-          <script>
-            const products = [
-              { img: 'apparel.png', title: 'Custom Apparel', text: 'Branded shirts, jackets, and more.', link: 'apparel' },
-              { img: 'customized-bags-and-totes.png', title: 'Bags & Totes', text: 'Branded bags and totes.', link: 'bags' },
-              { img: 'custom-drinkware-promos.png', title: 'Drinkware', text: 'Tumblers, mugs & bottles.', link: 'promotional-products/search/?keyword=Drinkware' },
-              { img: 'promotional-pens-and-writing-instruments.png', title: 'Writing Instruments', text: 'Pens, markers & more.', link: 'promotional-products/search/?keyword=Writing%20Instruments' },
-              { img: 'branded-electronics-promo-items.png', title: 'Electronics', text: 'Branded gadgets and gear.', link: 'promotional-products/search/?keyword=electronic' },
-              { img: 'branded-giveaways.png', title: 'Giveaways', text: 'Affordable promo items.', link: 'giveaways' },
-              { img: 'branded-household-goods.png', title: 'Household Goods', text: 'Branded home essentials.', link: 'household-goods' },
-              { img: 'branded-auto-tools-and-travel-items.png', title: 'Auto, Tools & Travel', text: 'Travel & car accessories.', link: 'auto-tools-travel' },
-              { img: 'promotional-corporate-gifts.png', title: 'Corporate Gifts', text: 'Premium gifts for clients.', link: 'promotional-products/search/?keyword=corporate%20gifts' },
-              { img: 'customized-golf-products.png', title: 'Golf Products', text: 'Branded golf items.', link: 'golf-products' },
-              { img: 'custom-health-and-personal-promos.png', title: 'Health & Personal', text: 'Wellness and care promos.', link: 'health-personal-care' },
-              { img: 'custom-office-and-desktop-promos.png', title: 'Office & Desktop', text: 'Branded office supplies.', link: 'office-desktop' }
-            ];
-          </script>
-          <script>
-            document.write(products.map(p => `
-              <div class="col-md-3" data-aos="fade-up">
-                <div class="card h-100 card-hover">
-                  <img src="images/${p.img}" class="card-img-top" alt="${p.title}">
-                  <div class="card-body">
-                    <h6 class="card-title">${p.title}</h6>
-                    <p class="card-text text-muted">${p.text}</p>
-                    <a href="https://www.executiveadvertising.com/${p.link}?aid=1056" class="btn btn-warning w-100">Shop Now</a>
-                  </div>
-                </div>
-              </div>
-            `).join(''));
-          </script>
-
-          <div class="center-btn">
-            <a href="#" class="btn btn-success btn-lg btn-animated">Get Started Today!</a>
+      <!-- Sidebar -->
+      <aside class="col-md-2 sidebar bg-white">
+        <h6 class="text-uppercase px-3">Departments</h6>
+        <ul class="nav flex-column" id="categoryList">
+          <li><a href="https://www.executiveadvertising.com/apparel?aid=1056" target="_blank" class="nav-link">Apparel</a></li>
+          <li><a href="https://www.executiveadvertising.com/bags?aid=1056" target="_blank" class="nav-link">Bags & Totes</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" target="_blank" class="nav-link">Drinkware</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Writing%20Instruments&aid=1056" target="_blank" class="nav-link">Writing Instruments</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=electronic&aid=1056" target="_blank" class="nav-link">Electronics</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=recycled&aid=1056" target="_blank" class="nav-link">Recycled Products</a></li>
+          <li><a href="https://www.executiveadvertising.com/giveaways?aid=1056" target="_blank" class="nav-link">Giveaways</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=calendars&aid=1056" target="_blank" class="nav-link">Calendars</a></li>
+          <li><a href="https://www.executiveadvertising.com/health-personal-care?aid=1056" target="_blank" class="nav-link">Health & Wellness</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Outdoor&aid=1056" target="_blank" class="nav-link">Outdoor & Leisure</a></li>
+          <div id="moreCategories" style="display: none;">
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=corporate%20gifts&aid=1056" target="_blank" class="nav-link">Corporate Gifts</a></li>
+            <li><a href="https://www.executiveadvertising.com/auto-tools-travel?aid=1056" target="_blank" class="nav-link">Auto, Tools & Travel</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=keychain&aid=1056" target="_blank" class="nav-link">Keychains</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Trade%20Show&aid=1056" target="_blank" class="nav-link">Trade Show Items</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Award&aid=1056" target="_blank" class="nav-link">Awards & Recognition</a></li>
+            <li><a href="https://www.executiveadvertising.com/office-desktop?aid=1056" target="_blank" class="nav-link">Office & Desktop</a></li>
+            <li><a href="https://www.executiveadvertising.com/golf-products?aid=1056" target="_blank" class="nav-link">Golf Products</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=travel&aid=1056" target="_blank" class="nav-link">Travel Accessories</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Sports&aid=1056" target="_blank" class="nav-link">Sports & Fitness</a></li>
           </div>
+        </ul>
+        <a class="toggle-btn" onclick="toggleCategories()">Show More ▼</a>
+      </aside>
 
+      <!-- Product Grid and Promo Content -->
+      <main class="col-md-10 py-4">
+        <!-- Promo Write-up -->
+        <section class="bg-white p-4 rounded shadow-sm mb-5">
+          <h5 class="mb-3">Why Promotional Products Matter</h5>
+          <p>Promotional products are a cornerstone of effective marketing, offering branded merchandise like <strong>custom apparel</strong>, <strong>branded drinkware</strong>, and <strong>corporate gifts</strong> to boost brand visibility. These items have been used for over a century, starting with commemorative buttons during George Washington's election, and remain a cost-effective strategy today.</p>
+          <p>The long-lasting impact of promotional products sets them apart. Unlike fleeting digital ads, physical items like <strong>promotional pens</strong> or <strong>trade show items</strong> are used for months or years, creating lasting brand impressions. Businesses leverage everything from matchbooks to modern <strong>branded electronics</strong> to win customer loyalty and generate leads.</p>
+          <p>Whether you’re launching a business, attending a trade show, or rewarding clients, <strong>custom promotional items</strong> are powerful tools. PromoPalaces offers a curated catalog of <strong>affordable branded giveaways</strong>, <strong>branded household goods</strong>, and <strong>custom trade show giveaways</strong>, partnered with Executive Advertising, to help you succeed.</p>
+          <a href="#featured" class="btn btn-success mt-3">Get Started Today!</a>
+        </section>
+
+        <h4 class="mb-4" id="featured">Monthly Featured Products</h4>
+        <div class="row g-4 mb-5">
+          <!-- Apparel -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/apparel.png" class="card-img-top" alt="Custom Apparel - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Apparel</h6>
+                <p class="card-text text-muted">Branded shirts, jackets, and more.</p>
+                <a href="https://www.executiveadvertising.com/apparel?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Bags & Totes -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/customized-bags-and-totes.png" class="card-img-top" alt="Customized Bags & Totes - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Customized Bags & Totes</h6>
+                <p class="card-text text-muted">Branded bags and totes for all occasions.</p>
+                <a href="https://www.executiveadvertising.com/bags?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Drinkware -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/custom-drinkware-promos.png" class="card-img-top" alt="Branded Drinkware - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Drinkware Promos</h6>
+                <p class="card-text text-muted">Tumblers, mugs & bottles with logos.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Writing Instruments -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/promotional-pens-and-writing-instruments.png" class="card-img-top" alt="Promotional Pens - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Promotional Pens & Writing Instruments</h6>
+                <p class="card-text text-muted">Branded pens and writing tools.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Writing%20Instruments&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Electronics -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-electronics-promo-items.png" class="card-img-top" alt="Branded Electronics - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Electronics Promo Items</h6>
+                <p class="card-text text-muted">Tech gadgets with your logo.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=electronic&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Giveaways -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-giveaways.png" class="card-img-top" alt="Affordable Branded Giveaways - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Giveaways</h6>
+                <p class="card-text text-muted">Affordable promotional items.</p>
+                <a href="https://www.executiveadvertising.com/giveaways?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Household Goods -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-household-goods.png" class="card-img-top" alt="Branded Household Goods - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Household Goods</h6>
+                <p class="card-text text-muted">Useful home items with logos.</p>
+                <a href="https://www.executiveadvertising.com/household-goods?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Auto, Tools & Travel -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-auto-tools-and-travel-items.png" class="card-img-top" alt="Auto, Tools & Travel - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Auto, Tools & Travel Items</h6>
+                <p class="card-text text-muted">Travel and tool essentials.</p>
+                <a href="https://www.executiveadvertising.com/auto-tools-travel?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Corporate Gifts -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/promotional-corporate-gifts.png" class="card-img-top" alt="Corporate Gifts - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Promotional Corporate Gifts</h6>
+                <p class="card-text text-muted">Premium gifts for clients.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=corporate%20gifts&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Golf Products -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/customized-golf-products.png" class="card-img-top" alt="Customized Golf Products - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Customized Golf Products</h6>
+                <p class="card-text text-muted">Golf gear with your brand.</p>
+                <a href="https://www.executiveadvertising.com/golf-products?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Health & Personal -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/custom-health-and-personal-promos.png" class="card-img-top" alt="Health & Personal Promos - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Health & Personal Promos</h6>
+                <p class="card-text text-muted">Wellness items with logos.</p>
+                <a href="https://www.executiveadvertising.com/health-personal-care?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Office & Desktop -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/custom-office-and-desktop-promos.png" class="card-img-top" alt="Office & Desktop Promos - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Office & Desktop Promos</h6>
+                <p class="card-text text-muted">Desk accessories with branding.</p>
+                <a href="https://www.executiveadvertising.com/office-desktop?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
   </div>
 
-  <section class="bg-light p-5 text-center">
-    <h5 class="mb-4">What Our Customers Say</h5>
-    <blockquote class="blockquote">
-      <p class="mb-0">"PromoPalaces helped us find the perfect branded gear for our trade show. Great quality and fast turnaround!"</p>
-      <footer class="blockquote-footer">Marketing Manager at Creative Co.</footer>
-    </blockquote>
-  </section>
-
-  <button id="backToTopBtn" class="btn btn-warning">↑ Top</button>
-
   <footer class="bg-dark text-white py-3 text-center">
     <small>© 2025 PromoPalaces - All Rights Reserved</small>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init();
-
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    window.addEventListener('scroll', () => {
-      backToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-    backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
     function toggleCategories() {
       var more = document.getElementById('moreCategories');
       var btn = document.querySelector('.toggle-btn');
@@ -189,5 +258,7 @@
       }
     }
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
