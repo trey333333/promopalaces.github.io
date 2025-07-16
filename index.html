@@ -16,138 +16,249 @@
 </head>
 <body>
 
-<!-- ✅ Hero Banner with Attention Grabbers -->
-<header class="hero-banner text-white py-5 position-relative bg-dark">
-  <div class="container">
-    <div class="row align-items-center text-center text-md-start">
-      <div class="col-md-3 mb-4 mb-md-0 text-center">
-        <a href="https://www.executiveadvertising.com/on-sale?aid=1056" target="_blank">
-          <img src="images/stickergiant-sale.gif" alt="Sale & Closeout Items" class="img-fluid" style="max-height: 80px;">
-          <div class="text-warning fw-bold mt-2">Sale & Closeout Items</div>
-        </a>
-      </div>
-      <div class="col-md-6">
-        <h1 class="animate__animated animate__fadeInDown">Elevate Your Brand with PromoPalaces!</h1>
-        <p class="lead animate__animated animate__fadeInUp">Discover top-notch promotional products to skyrocket your marketing.</p>
-        <div class="text-center">
+  <!-- ✅ Hero Banner with Attention Grabbers -->
+  <header class="hero-banner text-white py-5 position-relative bg-dark">
+    <div class="container">
+      <div class="row align-items-center text-center text-md-start">
+        <!-- Left: Sale & Closeout Items -->
+        <div class="col-md-3 mb-4 mb-md-0 text-center">
+          <a href="https://www.executiveadvertising.com/on-sale?aid=1056" target="_blank">
+            <img src="images/stickergiant-sale.gif" alt="Sale & Closeout Items" class="img-fluid" style="max-height: 80px;">
+            <div class="text-warning fw-bold mt-2">Sale & Closeout Items</div>
+          </a>
+        </div>
+
+        <!-- Center: Main Hero Message -->
+        <div class="col-md-6">
+          <h1 class="animate__animated animate__fadeInDown">Elevate Your Brand with PromoPalaces!</h1>
+          <p class="lead animate__animated animate__fadeInUp">Discover top-notch promotional products to skyrocket your marketing.</p>
           <a href="#featured" class="btn btn-warning btn-lg animate__animated animate__pulse animate__infinite" style="animation-duration: 2s;">Shop Now!</a>
         </div>
-      </div>
-      <div class="col-md-3 mt-4 mt-md-0 text-center">
-        <a href="https://www.executiveadvertising.com/made-in-usa?aid=1056" target="_blank">
-          <img src="images/usamadeanimated.jpg" alt="USA Made Products" class="img-fluid" style="max-height: 80px;">
-          <div class="text-warning fw-bold mt-2">USA Made Products</div>
-        </a>
+
+        <!-- Right: USA Made Products -->
+        <div class="col-md-3 mt-4 mt-md-0 text-center">
+          <a href="https://www.executiveadvertising.com/made-in-usa?aid=1056" target="_blank">
+            <img src="images/usamadeanimated.jpg" alt="USA Made Products" class="img-fluid" style="max-height: 80px;">
+            <div class="text-warning fw-bold mt-2">USA Made Products</div>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-  <a class="navbar-brand d-flex align-items-center" href="#">
-    <img src="logo.png" alt="PromoPalaces Logo - Promotional Products" height="40" class="me-2">
-    <span class="fw-bold text-white">PromoPalaces</span>
-  </a>
-  <form class="d-flex ms-auto w-100 justify-content-end" role="search" action="https://www.executiveadvertising.com/promotional-products/search/" method="get" target="_blank">
-    <input class="form-control me-2" type="search" name="keyword" placeholder="Search Promotional Products..." aria-label="Search">
-    <input type="hidden" name="aid" value="1056">
-    <button class="btn btn-warning" type="submit">Search</button>
-  </form>
-</nav>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo.png" alt="PromoPalaces Logo - Promotional Products" height="40" class="me-2">
+      <span class="fw-bold text-white">PromoPalaces</span>
+    </a>
+    <form class="d-flex ms-auto" role="search" action="https://www.executiveadvertising.com/promotional-products/search/" method="get" target="_blank">
+  <input class="form-control me-2" type="search" name="keyword" placeholder="Search Promotional Products..." aria-label="Search">
+  <input type="hidden" name="aid" value="1056">
+  <button class="btn btn-warning" type="submit">Search</button>
+</form>
+  </nav>
 
-<!-- Main Layout -->
-<div class="container-fluid">
-  <div class="row">
-    <!-- Sidebar -->
-    <aside class="col-md-2 sidebar bg-white position-sticky" style="top: 0; height: 100vh; overflow-y: auto;">
-      <h6 class="text-uppercase px-3 mt-3">Departments</h6>
-      <ul class="nav flex-column" id="categoryList">
-        <li><a href="https://www.executiveadvertising.com/apparel?aid=1056" target="_blank" class="nav-link">Apparel</a></li>
-        <li><a href="https://www.executiveadvertising.com/bags?aid=1056" target="_blank" class="nav-link">Bags & Totes</a></li>
-        <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" target="_blank" class="nav-link">Drinkware</a></li>
-        <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Writing%20Instruments&aid=1056" target="_blank" class="nav-link">Writing Instruments</a></li>
-        <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=electronic&aid=1056" target="_blank" class="nav-link">Electronics</a></li>
-        <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=recycled&aid=1056" target="_blank" class="nav-link">Recycled Products</a></li>
-        <li><a href="https://www.executiveadvertising.com/giveaways?aid=1056" target="_blank" class="nav-link">Giveaways</a></li>
-        <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=calendars&aid=1056" target="_blank" class="nav-link">Calendars</a></li>
-        <li><a href="https://www.executiveadvertising.com/health-personal-care?aid=1056" target="_blank" class="nav-link">Health & Wellness</a></li>
-        <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Outdoor&aid=1056" target="_blank" class="nav-link">Outdoor & Leisure</a></li>
-        <!-- Add "Show More" toggle here if needed -->
-      </ul>
-    </aside>
+  <!-- Main Layout -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <aside class="col-md-2 sidebar bg-white">
+        <h6 class="text-uppercase px-3">Departments</h6>
+        <ul class="nav flex-column" id="categoryList">
+          <li><a href="https://www.executiveadvertising.com/apparel?aid=1056" target="_blank" class="nav-link">Apparel</a></li>
+          <li><a href="https://www.executiveadvertising.com/bags?aid=1056" target="_blank" class="nav-link">Bags & Totes</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" target="_blank" class="nav-link">Drinkware</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Writing%20Instruments&aid=1056" target="_blank" class="nav-link">Writing Instruments</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=electronic&aid=1056" target="_blank" class="nav-link">Electronics</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=recycled&aid=1056" target="_blank" class="nav-link">Recycled Products</a></li>
+          <li><a href="https://www.executiveadvertising.com/giveaways?aid=1056" target="_blank" class="nav-link">Giveaways</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=calendars&aid=1056" target="_blank" class="nav-link">Calendars</a></li>
+          <li><a href="https://www.executiveadvertising.com/health-personal-care?aid=1056" target="_blank" class="nav-link">Health & Wellness</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Outdoor&aid=1056" target="_blank" class="nav-link">Outdoor & Leisure</a></li>
+          <div id="moreCategories" style="display: none;">
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=corporate%20gifts&aid=1056" target="_blank" class="nav-link">Corporate Gifts</a></li>
+            <li><a href="https://www.executiveadvertising.com/auto-tools-travel?aid=1056" target="_blank" class="nav-link">Auto, Tools & Travel</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=keychain&aid=1056" target="_blank" class="nav-link">Keychains</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Trade%20Show&aid=1056" target="_blank" class="nav-link">Trade Show Items</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Award&aid=1056" target="_blank" class="nav-link">Awards & Recognition</a></li>
+            <li><a href="https://www.executiveadvertising.com/office-desktop?aid=1056" target="_blank" class="nav-link">Office & Desktop</a></li>
+            <li><a href="https://www.executiveadvertising.com/golf-products?aid=1056" target="_blank" class="nav-link">Golf Products</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=travel&aid=1056" target="_blank" class="nav-link">Travel Accessories</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Sports&aid=1056" target="_blank" class="nav-link">Sports & Fitness</a></li>
+          </div>
+        </ul>
+        <a class="toggle-btn" onclick="toggleCategories()">Show More ▼</a>
+      </aside>
 
-    <!-- Product Grid and Content -->
-    <main class="col-md-10 py-4">
-      <section class="bg-white p-4 rounded shadow-sm mb-5">
-        <h5 class="mb-3">Why Promotional Products Matter</h5>
-        <p>Promotional products are a cornerstone of effective marketing, offering branded merchandise like <strong>custom apparel</strong>, <strong>branded drinkware</strong>, and <strong>corporate gifts</strong> to boost brand visibility...</p>
-        <a href="#featured" class="btn btn-success mt-3 d-block mx-auto" style="max-width: 200px;">Get Started Today!</a>
-      </section>
+      <!-- Product Grid and Promo Content -->
+      <main class="col-md-10 py-4">
+        <!-- Promo Write-up -->
+        <section class="bg-white p-4 rounded shadow-sm mb-5">
+          <h5 class="mb-3">Why Promotional Products Matter</h5>
+          <p>Promotional products are a cornerstone of effective marketing, offering branded merchandise like <strong>custom apparel</strong>, <strong>branded drinkware</strong>, and <strong>corporate gifts</strong> to boost brand visibility. These items have been used for over a century, starting with commemorative buttons during George Washington's election, and remain a cost-effective strategy today.</p>
+          <p>The long-lasting impact of promotional products sets them apart. Unlike fleeting digital ads, physical items like <strong>promotional pens</strong> or <strong>trade show items</strong> are used for months or years, creating lasting brand impressions. Businesses leverage everything from matchbooks to modern <strong>branded electronics</strong> to win customer loyalty and generate leads.</p>
+          <p>Whether you’re launching a business, attending a trade show, or rewarding clients, <strong>custom promotional items</strong> are powerful tools. PromoPalaces offers a curated catalog of <strong>affordable branded giveaways</strong>, <strong>branded household goods</strong>, and <strong>custom trade show giveaways</strong>, partnered with Executive Advertising, to help you succeed.</p>
+          <a href="#featured" class="btn btn-success mt-3">Get Started Today!</a>
+        </section>
 
-      <!-- Product Cards (Start of Featured Products Section) -->
-      <h4 class="mb-4" id="featured">Monthly Featured Products</h4>
-      <div class="row g-4 mb-5">
-        <!-- Example Product Card -->
-        <div class="col-md-3">
-          <div class="card h-100 card-hover animate__animated animate__fadeInUp">
-            <img src="images/apparel.png" class="card-img-top" alt="Custom Apparel">
-            <div class="card-body">
-              <h6 class="card-title">Custom Apparel</h6>
-              <p class="card-text text-muted">Branded shirts, jackets, and more.</p>
-              <a href="https://www.executiveadvertising.com/apparel?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+        <h4 class="mb-4" id="featured">Monthly Featured Products</h4>
+        <div class="row g-4 mb-5">
+          <!-- Apparel -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/apparel.png" class="card-img-top" alt="Custom Apparel - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Apparel</h6>
+                <p class="card-text text-muted">Branded shirts, jackets, and more.</p>
+                <a href="https://www.executiveadvertising.com/apparel?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Bags & Totes -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/customized-bags-and-totes.png" class="card-img-top" alt="Customized Bags & Totes - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Customized Bags & Totes</h6>
+                <p class="card-text text-muted">Branded bags and totes for all occasions.</p>
+                <a href="https://www.executiveadvertising.com/bags?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Drinkware -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/custom-drinkware-promos.png" class="card-img-top" alt="Branded Drinkware - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Drinkware Promos</h6>
+                <p class="card-text text-muted">Tumblers, mugs & bottles with logos.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Writing Instruments -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/promotional-pens-and-writing-instruments.png" class="card-img-top" alt="Promotional Pens - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Promotional Pens & Writing Instruments</h6>
+                <p class="card-text text-muted">Branded pens and writing tools.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Writing%20Instruments&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Electronics -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-electronics-promo-items.png" class="card-img-top" alt="Branded Electronics - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Electronics Promo Items</h6>
+                <p class="card-text text-muted">Tech gadgets with your logo.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=electronic&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Giveaways -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-giveaways.png" class="card-img-top" alt="Affordable Branded Giveaways - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Giveaways</h6>
+                <p class="card-text text-muted">Affordable promotional items.</p>
+                <a href="https://www.executiveadvertising.com/giveaways?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Household Goods -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-household-goods.png" class="card-img-top" alt="Branded Household Goods - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Household Goods</h6>
+                <p class="card-text text-muted">Useful home items with logos.</p>
+                <a href="https://www.executiveadvertising.com/household-goods?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Auto, Tools & Travel -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/branded-auto-tools-and-travel-items.png" class="card-img-top" alt="Auto, Tools & Travel - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Branded Auto, Tools & Travel Items</h6>
+                <p class="card-text text-muted">Travel and tool essentials.</p>
+                <a href="https://www.executiveadvertising.com/auto-tools-travel?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Corporate Gifts -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/promotional-corporate-gifts.png" class="card-img-top" alt="Corporate Gifts - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Promotional Corporate Gifts</h6>
+                <p class="card-text text-muted">Premium gifts for clients.</p>
+                <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=corporate%20gifts&aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Golf Products -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/customized-golf-products.png" class="card-img-top" alt="Customized Golf Products - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Customized Golf Products</h6>
+                <p class="card-text text-muted">Golf gear with your brand.</p>
+                <a href="https://www.executiveadvertising.com/golf-products?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Health & Personal -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/custom-health-and-personal-promos.png" class="card-img-top" alt="Health & Personal Promos - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Health & Personal Promos</h6>
+                <p class="card-text text-muted">Wellness items with logos.</p>
+                <a href="https://www.executiveadvertising.com/health-personal-care?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
+            </div>
+          </div>
+          <!-- Office & Desktop -->
+          <div class="col-md-3">
+            <div class="card h-100 card-hover">
+              <img src="images/custom-office-and-desktop-promos.png" class="card-img-top" alt="Office & Desktop Promos - Promotional Products">
+              <div class="card-body">
+                <h6 class="card-title">Custom Office & Desktop Promos</h6>
+                <p class="card-text text-muted">Desk accessories with branding.</p>
+                <a href="https://www.executiveadvertising.com/office-desktop?aid=1056" class="btn btn-warning btn-flare w-100" target="_blank">Shop Now</a>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Repeat similar cards for other categories -->
-      </div>
-
-      <!-- Testimonials -->
-      <section class="bg-light p-4 rounded shadow-sm">
-        <h5 class="mb-4 text-center">What Our Clients Say</h5>
-        <blockquote class="blockquote text-center">
-          <p class="mb-0">"PromoPalaces helped us create the perfect branded giveaways for our trade show. Fantastic service!"</p>
-          <footer class="blockquote-footer">Jessica M., Marketing Director</footer>
-        </blockquote>
-      </section>
-    </main>
+      </main>
+    </div>
   </div>
-</div>
 
-<!-- Back to Top Button -->
-<button onclick="topFunction()" id="backToTopBtn" title="Go to top" class="btn btn-warning position-fixed" style="bottom: 20px; right: 20px; display: none;">↑</button>
+  <footer class="bg-dark text-white py-3 text-center">
+    <small>© 2025 PromoPalaces - All Rights Reserved</small>
+  </footer>
 
-<footer class="bg-dark text-white py-3 text-center">
-  <small>© 2025 PromoPalaces - All Rights Reserved</small>
-</footer>
-
-<script>
-  function toggleCategories() {
-    var more = document.getElementById('moreCategories');
-    var btn = document.querySelector('.toggle-btn');
-    if (more.style.display === 'none') {
-      more.style.display = 'block';
-      btn.textContent = 'Show Less ▲';
-    } else {
-      more.style.display = 'none';
-      btn.textContent = 'Show More ▼';
+  <script>
+    function toggleCategories() {
+      var more = document.getElementById('moreCategories');
+      var btn = document.querySelector('.toggle-btn');
+      if (more.style.display === 'none') {
+        more.style.display = 'block';
+        btn.textContent = 'Show Less ▲';
+      } else {
+        more.style.display = 'none';
+        btn.textContent = 'Show More ▼';
+      }
     }
-  }
+  </script>
 
-  // Back to top button logic
-  let mybutton = document.getElementById("backToTopBtn");
-  window.onscroll = function () {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      mybutton.style.display = "block";
-    } else {
-      mybutton.style.display = "none";
-    }
-  };
-  function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
