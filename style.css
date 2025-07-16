@@ -9,7 +9,7 @@ body {
 
 /* Hero Banner */
 .hero-banner {
-    background: url('https://via.placeholder.com/1200x300') no-repeat center center/cover; /* Replace with your image */
+    background: linear-gradient(135deg, #1e3a8a, #4b5cc4); /* Dark gradient for contrast */
     padding: 60px 20px;
     position: relative;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
