@@ -35,6 +35,16 @@
       object-fit: cover;
       width: 100%;
     }
+    .toggle-btn {
+      cursor: pointer;
+      color: #0d6efd;
+      padding: 10px 16px;
+      display: block;
+    }
+    footer.bg-dark {
+      background-color: #f8f9fa !important;
+      color: #212529;
+    }
   </style>
 </head>
 <body>
@@ -56,17 +66,34 @@
       <!-- Sidebar -->
       <aside class="col-md-2 sidebar bg-white">
         <h6 class="text-uppercase px-3">Departments</h6>
-        <ul class="nav flex-column">
+        <ul class="nav flex-column" id="categoryList">
           <li><a href="https://www.executiveadvertising.com/apparel?aid=1056" target="_blank" class="nav-link">Apparel</a></li>
           <li><a href="https://www.executiveadvertising.com/bags?aid=1056" target="_blank" class="nav-link">Bags & Totes</a></li>
           <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" target="_blank" class="nav-link">Drinkware</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Writing%20Instruments&aid=1056" target="_blank" class="nav-link">Writing Instruments</a></li>
           <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=techaccessories&aid=1056" target="_blank" class="nav-link">Tech Accessories</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=recycled&aid=1056" target="_blank" class="nav-link">Recycled Products</a></li>
+          <li><a href="https://www.executiveadvertising.com/giveaways?aid=1056" target="_blank" class="nav-link">Giveaways</a></li>
           <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=calendars&aid=1056" target="_blank" class="nav-link">Calendars</a></li>
           <li><a href="https://www.executiveadvertising.com/health-personal-care?aid=1056" target="_blank" class="nav-link">Health & Wellness</a></li>
-          <li><a href="https://www.executiveadvertising.com/giveaways?aid=1056" target="_blank" class="nav-link">Giveaways</a></li>
-          <li><a href="https://www.executiveadvertising.com/household-goods?aid=1056" target="_blank" class="nav-link">Household Goods</a></li>
-          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=pet&aid=1056" target="_blank" class="nav-link">Pet Products</a></li>
+          <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Outdoor&aid=1056" target="_blank" class="nav-link">Outdoor & Leisure</a></li>
+          <div id="moreCategories" style="display: none;">
+            <li><a href="https://www.executiveadvertising.com/food-corporate-gifts?aid=1056" target="_blank" class="nav-link">Food & Gifts</a></li>
+            <li><a href="https://www.executiveadvertising.com/auto-tools-travel?aid=1056" target="_blank" class="nav-link">Auto, Tools & Travel</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=keychain&aid=1056" target="_blank" class="nav-link">Keychains</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Trade%20Show&aid=1056" target="_blank" class="nav-link">Trade Show Items</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Award&aid=1056" target="_blank" class="nav-link">Awards & Recognition</a></li>
+            <li><a href="https://www.executiveadvertising.com/office-desktop?aid=1056" target="_blank" class="nav-link">Office & Desktop</a></li>
+            <li><a href="https://www.executiveadvertising.com/golf-products?aid=1056" target="_blank" class="nav-link">Golf Products</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=travel&aid=1056" target="_blank" class="nav-link">Travel Accessories</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Sports&aid=1056" target="_blank" class="nav-link">Sports & Fitness</a></li>
+            <li><a href="https://www.executiveadvertising.com/household-goods?aid=1056" target="_blank" class="nav-link">Household Goods</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=first%20aid&aid=1056" target="_blank" class="nav-link">Safety & First Aid</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=pet&aid=1056" target="_blank" class="nav-link">Pet Products</a></li>
+            <li><a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Party&aid=1056" target="_blank" class="nav-link">Event & Party Supplies</a></li>
+          </div>
         </ul>
+        <a class="toggle-btn" onclick="toggleCategories()">Show More ▼</a>
       </aside>
 
       <!-- Product Grid and Promo Content -->
@@ -113,5 +140,19 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleCategories() {
+      const more = document.getElementById('moreCategories');
+      const toggleBtn = document.querySelector('.toggle-btn');
+      if (more.style.display === 'none') {
+        more.style.display = 'block';
+        toggleBtn.textContent = 'Show Less ▲';
+      } else {
+        more.style.display = 'none';
+        toggleBtn.textContent = 'Show More ▼';
+      }
+    }
+  </script>
 </body>
 </html>
+
