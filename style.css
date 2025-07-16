@@ -1,131 +1,116 @@
-/* General Typography and Body */
+/* ==== Global Reset Enhancements ==== */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f8f8f8;
-  color: #333;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Header & Footer */
-header {
-  background: #1e3a8a;
-  color: white;
-  padding: 1em;
-  text-align: center;
-}
-footer {
-  background: #1e3a8a;
-  color: white;
-  text-align: center;
-  padding: 1em;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Navbar */
-.navbar-brand {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-.navbar-nav .nav-link {
-  font-size: 1rem;
-  padding: 0.5rem 0.75rem;
+/* ==== Hero Banner ==== */
+.hero-banner h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
-/* Sidebar */
+.hero-banner p.lead {
+  font-size: 1.2rem;
+}
+
+/* ==== Sidebar ==== */
 .sidebar {
-  border-right: 1px solid #ddd;
-}
-.sidebar h6 {
+  border-right: 1px solid #dee2e6;
+  min-height: 100%;
   padding-top: 1rem;
 }
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-.sidebar li {
-  margin: 0.5rem 0;
-}
-.sidebar .nav-link {
+
+.sidebar h6 {
+  font-size: 0.875rem;
   color: #333;
 }
-.sidebar .nav-link:hover {
-  color: #1e3a8a;
-  text-decoration: underline;
-}
-.toggle-btn {
-  cursor: pointer;
-  color: #1e3a8a;
-  font-size: 0.9rem;
-  margin-left: 1rem;
-}
-.sticky-sidebar {
-  position: sticky;
-  top: 70px;
+
+.sidebar .nav-link {
+  color: #333;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
 }
 
-/* Cards */
-.card {
-  transition: transform 0.3s, box-shadow 0.3s;
+.sidebar .nav-link:hover {
+  background-color: #f0f0f0;
+  text-decoration: none;
 }
+
+/* Toggle Button */
+.toggle-btn {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.toggle-btn:hover {
+  text-decoration: underline;
+}
+
+/* ==== Product Cards ==== */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+}
+
 .card-hover:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
-.card h6 {
+
+.card-title {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
+
+.card-text {
+  font-size: 0.85rem;
+}
+
+/* Image Handling for Cards */
 .card-img-top {
-  height: 150px;
-  object-fit: cover;
+  object-fit: contain;
+  height: 180px;
   width: 100%;
 }
 
-/* Buttons */
-.btn-warning {
-  font-weight: bold;
+/* Hero Banner Image Constraints */
+.hero-banner img {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
 }
+
+/* ==== Buttons ==== */
 .btn-flare {
-  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.4);
-}
-.btn-flare:hover {
-  box-shadow: 0 6px 12px rgba(255, 193, 7, 0.6);
-}
-
-/* Testimonial Section */
-blockquote {
-  font-style: italic;
-}
-blockquote footer {
-  margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #666;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-/* Back to Top Button */
-#backToTopBtn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: none;
-  z-index: 1000;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  text-align: center;
-  font-size: 18px;
-  padding: 0;
+.btn-flare:hover {
+  background-color: #f0ad4e;
+  color: #fff;
 }
 
-/* Responsive Fixes */
-@media (max-width: 991px) {
-  .navbar-nav {
-    text-align: center;
-  }
-  .sticky-sidebar {
-    position: static;
-  }
+/* Featured Section */
+section.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* Footer */
+footer small {
+  font-size: 0.85rem;
+  color: #ccc;
 }
