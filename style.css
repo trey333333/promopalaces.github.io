@@ -169,3 +169,17 @@ section .btn-success {
 .btn {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+/* Keep headline on one line by default */
+.hero-banner h1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 2.5rem; /* Desktop size */
+}
+
+/* On small screens, shrink font so it fits */
+@media (max-width: 768px) {
+  .hero-banner h1 {
+    font-size: 1.5rem;
+  }
+}
