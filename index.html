@@ -34,23 +34,69 @@
             display: block;
         }
 
-        /* Styling for the video container */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            margin-bottom: 3rem; /* Spacing below the video */
+        /* Carousel specific styles */
+        .hero-banner .carousel {
+            margin-top: 20px; /* Adjust spacing from top banners */
+            margin-bottom: 20px;
+            border-radius: 8px; /* Slightly rounded corners for the carousel */
+            overflow: hidden; /* Ensures rounded corners are visible */
         }
 
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .carousel-item {
+            text-align: center;
+            height: 350px; /* Fixed height for carousel items */
+            background-color: #f8f9fa; /* Light background for product images, adjust as needed */
+            display: flex;
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            position: relative; /* For caption positioning */
+        }
+
+        .carousel-item img {
             width: 100%;
             height: 100%;
+            object-fit: contain; /* IMPORTANT: Use 'contain' for product images to show full product */
+            padding: 20px; /* Add some padding around the images if needed */
+        }
+
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            color: #212529; /* Darker text for captions on lighter backgrounds */
+            text-shadow: none; /* No text shadow as background is lighter */
+            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white background for readability */
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .carousel-caption h1, .carousel-caption p {
+            color: #212529 !important; /* Ensure text is dark */
+        }
+
+        /* Adjust hero headline within carousel caption */
+        .carousel-caption .hero-headline {
+            font-size: calc(1.5rem + 1vw); /* Responsive font size */
+            margin-bottom: 1rem;
+        }
+
+        .carousel-caption .lead {
+            font-size: calc(1rem + 0.3vw);
+        }
+
+        /* Ensure controls are visible */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%; /* Make controls thinner */
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.6); /* Make icons more visible */
+            border-radius: 50%;
+            padding: 10px;
         }
     </style>
 </head>
@@ -67,16 +113,61 @@
                 </div>
 
                 <div class="col-md-6">
-                    <h1 class="animate__animated animate__fadeInDown hero-headline">
-                        <span class="d-block">Elevate Your Brand</span>
-                        <span class="d-block">With Promo Palaces</span>
-                    </h1>
-                    <p class="lead animate__animated animate__fadeInUp">Discover top-notch promotional products to skyrocket your marketing.</p>
-
-                    <div class="text-center mt-3">
-                        <a href="#featured" class="btn btn-warning btn-lg animate__animated animate__pulse animate__infinite" style="animation-duration: 2s;">Shop Now!</a>
+                    <div id="welcomeCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#welcomeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#welcomeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#welcomeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#welcomeCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="carousel-caption d-block">
+                                    <h1 class="animate__animated animate__fadeInDown hero-headline">
+                                        <span class="d-block">Elevate Your Brand</span>
+                                        <span class="d-block">With Promo Palaces</span>
+                                    </h1>
+                                    <p class="lead animate__animated animate__fadeInUp">Discover top-notch promotional products to skyrocket your marketing.</p>
+                                    <div class="text-center mt-3">
+                                        <a href="#featured" class="btn btn-warning btn-lg animate__animated animate__pulse animate__infinite" style="animation-duration: 2s;">Shop Now!</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/apparel.png" class="d-block w-100" alt="Custom Apparel">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h1 class="hero-headline">Stylish Custom Apparel</h1>
+                                    <p class="lead">Brand your team or event with high-quality shirts, hats, and more.</p>
+                                    <a href="https://www.executiveadvertising.com/apparel?aid=1056" class="btn btn-info btn-lg mt-3" target="_blank">Shop Apparel</a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/custom-drinkware-promos.png" class="d-block w-100" alt="Branded Drinkware">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h1 class="hero-headline">Branded Drinkware for Every Occasion</h1>
+                                    <p class="lead">Mugs, tumblers, and bottles that keep your brand in hand.</p>
+                                    <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=Drinkware&aid=1056" class="btn btn-info btn-lg mt-3" target="_blank">Shop Drinkware</a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/branded-electronics-promo-items.png" class="d-block w-100" alt="Branded Electronics">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h1 class="hero-headline">Modern Branded Electronics</h1>
+                                    <p class="lead">Tech gadgets and accessories to power your promotions.</p>
+                                    <a href="https://www.executiveadvertising.com/promotional-products/search/?keyword=electronic&aid=1056" class="btn btn-info btn-lg mt-3" target="_blank">Shop Electronics</a>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#welcomeCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#welcomeCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
-                </div>
+                    </div>
 
                 <div class="col-md-3 mt-4 mt-md-0 text-center">
                     <a href="https://www.executiveadvertising.com/made-in-usa?aid=" target="_blank">
@@ -88,14 +179,6 @@
         </div>
     </header>
 
-    <section class="container mt-5">
-        <div class="video-container rounded shadow-lg">
-            <video controls autoplay muted loop>
-                <source src="images/promopalacescom-brand-promotion.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </section>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
         <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="logo.png" alt="PromoPalaces Logo - Promotional Products" height="40" class="me-2">
