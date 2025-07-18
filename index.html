@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* General Styles for the site */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
         /* Ensure all card images fit cleanly */
         .card-img-top {
             object-fit: contain;
@@ -40,12 +46,13 @@
             margin-bottom: 20px;
             border-radius: 8px; /* Slightly rounded corners for the carousel */
             overflow: hidden; /* Ensures rounded corners are visible */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
         }
 
         .carousel-item {
             text-align: center;
             height: 350px; /* Fixed height for carousel items */
-            background-color: #f8f9fa; /* Light background for product images, adjust as needed */
+            background-color: #ffffff; /* White background for product images */
             display: flex;
             align-items: center; /* Center content vertically */
             justify-content: center; /* Center content horizontally */
@@ -53,38 +60,67 @@
         }
 
         .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* IMPORTANT: Use 'contain' for product images to show full product */
-            padding: 20px; /* Add some padding around the images if needed */
+            max-width: 90%; /* Allow image to take up more width */
+            max-height: 90%; /* Allow image to take up more height */
+            object-fit: contain; /* Keep 'contain' to show full product */
+            /* Removed padding */
         }
 
+        /* Reposition carousel caption to the bottom for product slides */
         .carousel-caption {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
+            bottom: 0; /* Align to the bottom */
+            left: 0;
+            right: 0;
+            top: auto; /* Remove top positioning */
+            transform: none; /* Remove transform */
+            width: 100%; /* Full width at the bottom */
             color: #212529; /* Darker text for captions on lighter backgrounds */
             text-shadow: none; /* No text shadow as background is lighter */
-            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white background for readability */
-            padding: 10px 20px;
-            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque white background for readability */
+            padding: 15px 20px; /* Adjust padding */
+            border-radius: 0 0 8px 8px; /* Rounded corners only at the bottom to match carousel */
         }
 
         .carousel-caption h1, .carousel-caption p {
             color: #212529 !important; /* Ensure text is dark */
+            margin-bottom: 0.5rem; /* Space between headline and paragraph */
         }
 
-        /* Adjust hero headline within carousel caption */
+        /* Adjust font sizes within carousel caption */
         .carousel-caption .hero-headline {
-            font-size: calc(1.5rem + 1vw); /* Responsive font size */
-            margin-bottom: 1rem;
+            font-size: calc(1.3rem + 0.8vw); /* Slightly smaller responsive font size for captions */
+            margin-bottom: 0.5rem;
         }
 
         .carousel-caption .lead {
-            font-size: calc(1rem + 0.3vw);
+            font-size: calc(0.9rem + 0.2vw); /* Slightly smaller lead text */
+            margin-bottom: 1rem; /* Space between lead and button */
         }
+
+        /* Specific styling for the first slide's caption to maintain its original centered look */
+        .carousel-item.active .carousel-caption {
+            background-color: transparent; /* No background for the first slide's caption */
+            color: white; /* White text for the first slide */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for the first slide */
+            top: 50%; /* Revert top positioning for the first slide */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Revert transform for the first slide */
+            width: 80%; /* Original width */
+            border-radius: 0; /* No border-radius for the first slide's caption */
+            padding: 0; /* No padding for the first slide's caption */
+        }
+        .carousel-item.active .carousel-caption h1,
+        .carousel-item.active .carousel-caption p {
+            color: white !important; /* Ensure first slide text is white */
+        }
+        .carousel-item.active .carousel-caption .hero-headline {
+            font-size: calc(1.5rem + 1vw); /* Original font size for first slide headline */
+        }
+        .carousel-item.active .carousel-caption .lead {
+             font-size: calc(1rem + 0.3vw); /* Original font size for first slide lead */
+        }
+
 
         /* Ensure controls are visible */
         .carousel-control-prev,
@@ -97,6 +133,79 @@
             background-color: rgba(0, 0, 0, 0.6); /* Make icons more visible */
             border-radius: 50%;
             padding: 10px;
+        }
+
+        /* Sidebar and Main Content Layout */
+        .sidebar {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-right: 1px solid #eee;
+            min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+            background-color: #f8f9fa; /* Light background for sidebar */
+        }
+        .sidebar .nav-link {
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #e9ecef;
+            color: #007bff;
+        }
+        .sidebar .nav-link:active {
+            color: #0056b3;
+        }
+
+        /* Toggle button for categories */
+        .toggle-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            padding: 5px 0;
+            cursor: pointer;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .toggle-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Card Hover Effect */
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Button Flare Effect (for Shop Now!) */
+        .btn-flare {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-flare::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+            z-index: -1;
+        }
+        .btn-flare:hover::before {
+            left: 125%;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #212529; /* Darker footer to match navbar */
+            color: #f8f9fa;
         }
     </style>
 </head>
