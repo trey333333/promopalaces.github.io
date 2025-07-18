@@ -69,7 +69,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%; /* Width for the caption box */
+            width: 90%; /* Wider for the single block of text */
+            max-width: 700px; /* Add a max-width to prevent text from being too wide on large screens */
             color: white !important; /* Force white text color */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Strong text shadow for readability */
             background-color: transparent; /* No background */
@@ -79,21 +80,12 @@
             z-index: 2; /* Ensure text is above video */
         }
 
-        /* Adjust font sizes within video overlay caption */
-        .video-overlay-caption .hero-headline {
-            font-size: calc(1.3rem + 1vw); /* Responsive font size */
-            margin-bottom: 0.8rem;
-        }
-
-        .video-overlay-caption .lead {
-            font-size: calc(0.9rem + 0.3vw);
-            margin-bottom: 1rem; /* More space before button */
-        }
-
-        /* Button styling for overlay */
-        .video-overlay-caption .btn {
-            color: #212529 !important; /* Example: dark text for buttons if needed, adjust as desired */
-            text-shadow: none; /* Remove text shadow for button text */
+        /* Style for the consolidated text within the overlay */
+        .video-overlay-caption .overlay-text {
+            font-size: calc(1rem + 0.8vw); /* Responsive font size for the combined text */
+            line-height: 1.4;
+            margin: 0; /* Remove default margins */
+            color: white !important; /* Ensure text color is white */
         }
 
         /* Sidebar and Main Content Layout */
@@ -141,7 +133,7 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
-        /* Button Flare Effect (for Shop Now!) */
+        /* Button Flare Effect */
         .btn-flare {
             position: relative;
             overflow: hidden;
@@ -189,13 +181,8 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="video-overlay-caption">
-                            <h1 class="animate__animated animate__fadeInDown hero-headline">
-                                <span class="d-block">Elevate Your Brand</span>
-                                <span class="d-block">With Promo Palaces</span>
-                            </h1>
-                            <p class="lead animate__animated animate__fadeInUp">Discover top-notch promotional products to skyrocket your marketing.</p>
-                            <div class="text-center mt-3">
-                                <a href="#featured" class="btn btn-warning btn-lg animate__animated animate__pulse animate__infinite" style="animation-duration: 2s;">Shop Now!</a>
+                            <div class="overlay-text animate__animated animate__fadeInDown">
+                                Elevate Your Brand With Promo Palaces Discover top-notch promotional products to skyrocket your marketing
                             </div>
                         </div>
                     </div>
