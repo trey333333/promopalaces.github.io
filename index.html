@@ -51,6 +51,15 @@
             color: white; /* Ensure text is white */
         }
 
+        /* New style for the descriptive text below the video */
+        .video-description-text {
+            font-size: calc(0.9rem + 0.5vw); /* Slightly smaller, responsive font size */
+            line-height: 1.3;
+            margin-top: 1.5rem; /* Space between video and text */
+            color: white; /* Ensure text is white */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+        }
+
         /* Video Header Styles */
         .video-container {
             position: relative;
@@ -161,13 +170,16 @@
 
                 <div class="col-md-6">
                     <div class="header-intro-text text-white text-center animate__animated animate__fadeInDown mb-4">
-                        Elevate Your Brand With Promo Palaces Discover top-notch promotional products to skyrocket your marketing
+                        Elevate Your Brand With Promo Palaces
                     </div>
                     <div class="video-container">
                         <video autoplay loop muted playsinline class="header-video">
                             <source src="images/promopalacescom-brand-promotion.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                    </div>
+                    <div class="video-description-text text-white text-center animate__animated animate__fadeInUp mt-4">
+                        Discover top-notch promotional products to skyrocket your marketing
                     </div>
                 </div>
 
