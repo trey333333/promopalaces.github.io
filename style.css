@@ -211,10 +211,13 @@ section .btn-success {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Responsive font size for smaller screens for header-intro-text */
+/* Responsive font size for smaller screens for header-intro-text and video-description-text */
 @media (max-width: 768px) {
   .header-intro-text {
-    font-size: 1.5rem; /* Adjust font size for smaller screens */
+    font-size: 1.2rem; /* Adjusted font size for smaller screens to prevent truncation */
+  }
+  .video-description-text {
+    font-size: 0.8rem; /* Adjusted font size for smaller screens */
   }
 }
 
