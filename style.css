@@ -26,6 +26,9 @@ img {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
   color: white; /* Ensure text is white */
   text-align: center; /* Ensure it's centered */
+  white-space: nowrap; /* Keep text on a single line */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Add ellipsis for overflow */
 }
 
 /* Style for the descriptive text below the video */
@@ -208,7 +211,15 @@ section .btn-success {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Keep headline on one line by default (this might conflict with new header-intro-text, consider removal if not needed) */
+/* Responsive font size for smaller screens for header-intro-text */
+@media (max-width: 768px) {
+  .header-intro-text {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+}
+
+/* The following commented-out rules were redundant or conflicting with the new header-intro-text styles. */
+/* Keep headline on one line by default */
 /* .hero-banner h1 {
   white-space: nowrap;
   overflow: hidden;
@@ -216,14 +227,14 @@ section .btn-success {
   font-size: 2.5rem;
 } */
 
-/* On small screens, shrink font so it fits (this might conflict with new header-intro-text, consider removal if not needed) */
+/* On small screens, shrink font so it fits */
 /* @media (max-width: 768px) {
   .hero-banner h1 {
     font-size: 1.5rem;
   }
 } */
 
-/* Center and style two-line hero headline (this might conflict with new header-intro-text, consider removal if not needed) */
+/* Center and style two-line hero headline */
 /* .hero-headline {
   text-align: center;
   font-size: 2.5rem;
@@ -232,10 +243,9 @@ section .btn-success {
   margin-bottom: 1rem;
 } */
 
-/* Responsive font size for smaller screens (this might conflict with new header-intro-text, consider removal if not needed) */
+/* Responsive font size for smaller screens */
 /* @media (max-width: 768px) {
   .hero-headline {
     font-size: 1.7rem;
   }
 } */
-
