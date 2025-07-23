@@ -18,14 +18,47 @@ img {
   color: #fff;
 }
 
-.hero-banner h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+/* Header Intro Text Style (for text above the video) */
+.header-intro-text {
+  font-size: calc(1.1rem + 0.8vw); /* Responsive font size */
+  line-height: 1.4;
+  margin-bottom: 1.5rem; /* Space between text and video */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+  color: white; /* Ensure text is white */
+  text-align: center; /* Ensure it's centered */
 }
 
-.hero-banner p.lead {
-  font-size: 1.2rem;
+/* Style for the descriptive text below the video */
+.video-description-text {
+  font-size: calc(0.9rem + 0.5vw); /* Slightly smaller, responsive font size */
+  line-height: 1.3;
+  margin-top: 1.5rem; /* Space between video and text */
+  color: white; /* Ensure text is white */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+  text-align: center; /* Ensure it's centered */
 }
+
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 350px; /* Fixed height for the video frame */
+  overflow: hidden; /* Ensure video doesn't spill out */
+  border-radius: 8px; /* Maintain rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Maintain shadow */
+  display: flex; /* For centering video content */
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa; /* Fallback background if video doesn't load */
+}
+
+.header-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video covers the container without distortion */
+  display: block; /* Remove any extra space below video */
+}
+
 
 /* Limit and scale banner images (e.g. Sale & USA made) */
 .hero-banner img {
@@ -124,12 +157,14 @@ footer small {
   font-size: 0.85rem;
   color: #ccc;
 }
+
 /* Responsive wider search bar */
 @media (min-width: 768px) {
   .navbar form .form-control {
     min-width: 350px;
   }
 }
+
 /* Align hero banner side items */
 .hero-banner .col-md-3 {
   display: flex;
@@ -139,6 +174,7 @@ footer small {
   text-align: center;
   height: 100%;
 }
+
 /* Center image and text in hero columns */
 .hero-banner .col-md-3 a {
   display: flex;
@@ -146,6 +182,7 @@ footer small {
   align-items: center;
   text-align: center;
 }
+
 /* Center the Shop Now button in the hero banner */
 .hero-banner .btn {
   display: inline-block;
@@ -158,6 +195,7 @@ section .btn-success {
   margin: 0 auto;
   text-align: center;
 }
+
 /* Animate buttons on hover */
 .btn:hover {
   transform: scale(1.05);
@@ -169,31 +207,35 @@ section .btn-success {
 .btn {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-/* Keep headline on one line by default */
-.hero-banner h1 {
+
+/* Keep headline on one line by default (this might conflict with new header-intro-text, consider removal if not needed) */
+/* .hero-banner h1 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 2.5rem; /* Desktop size */
-}
+  font-size: 2.5rem;
+} */
 
-/* On small screens, shrink font so it fits */
-@media (max-width: 768px) {
+/* On small screens, shrink font so it fits (this might conflict with new header-intro-text, consider removal if not needed) */
+/* @media (max-width: 768px) {
   .hero-banner h1 {
     font-size: 1.5rem;
   }
-}
-/* Center and style two-line hero headline */
-.hero-headline {
+} */
+
+/* Center and style two-line hero headline (this might conflict with new header-intro-text, consider removal if not needed) */
+/* .hero-headline {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
-}
+} */
 
-/* Responsive font size for smaller screens */
-@media (max-width: 768px) {
+/* Responsive font size for smaller screens (this might conflict with new header-intro-text, consider removal if not needed) */
+/* @media (max-width: 768px) {
   .hero-headline {
     font-size: 1.7rem;
   }
+} */
+
