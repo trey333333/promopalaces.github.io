@@ -198,13 +198,22 @@
             <img src="main/images/promopalaceslogonew.png" alt="PromoPalaces Logo - Promotional Products" height="40" class="me-2">
             <span class="fw-bold text-white me-3">PromoPalaces</span>
         </a>
-        <a href="https://www.executiveadvertising.com/promotional-products/?aid=1056" class="btn btn-primary btn-sm" target="_blank">Explore All Products</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <form class="d-flex ms-auto" role="search" action="https://www.executiveadvertising.com/promotional-products/search/" method="get" target="_blank">
-            <input class="form-control me-2" type="search" name="keyword" placeholder="Search Promotional Products..." aria-label="Search">
-            <input type="hidden" name="aid" value="1056">
-            <button class="btn btn-warning" type="submit">Search</button>
-        </form>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ms-auto d-flex align-items-center">
+                <a href="https://www.executiveadvertising.com/promotional-products/?aid=1056" class="btn btn-primary btn-sm me-2" target="_blank">Explore All Products</a>
+                
+                <form class="d-flex" role="search" action="https://www.executiveadvertising.com/promotional-products/search/" method="get" target="_blank">
+                    <input class="form-control me-2" type="search" name="keyword" placeholder="Search Promotional Products..." aria-label="Search">
+                    <input type="hidden" name="aid" value="1056">
+                    <button class="btn btn-warning" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
     </nav>
 
     <div class="container-fluid">
