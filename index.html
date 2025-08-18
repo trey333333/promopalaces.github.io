@@ -22,7 +22,7 @@
             background-color: #f4f4f4;
         }
 
-        /* Navbar Logo Fix */
+        /* Navbar Logo Fix - Removed from here as per request, but keeping rule for potential future use or other images */
         .navbar-brand img {
             height: 60px !important;
             width: auto;
@@ -54,39 +54,42 @@
         .header-intro-text {
             font-size: calc(1.1rem + 0.8vw); /* Responsive font size */
             line-height: 1.4;
-            margin-bottom: 1.5rem; /* Space between text and video */
+            margin-bottom: 1.5rem; /* Space between text and video/image */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
             color: white; /* Ensure text is white */
         }
 
-        /* New style for the descriptive text below the video */
-        .video-description-text {
+        /* New style for the descriptive text below the video/image */
+        .video-description-text { /* Renamed for clarity, but kept for consistency with original structure */
             font-size: calc(0.9rem + 0.5vw); /* Slightly smaller, responsive font size */
             line-height: 1.3;
-            margin-top: 1.5rem; /* Space between video and text */
+            margin-top: 1.5rem; /* Space between video/image and text */
             color: white; /* Ensure text is white */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
         }
 
-        /* Video Header Styles */
-        .video-container {
+        /* Video/Image Container Styles */
+        .video-container { /* Now functions as an image container */
             position: relative;
             width: 100%;
-            height: 350px; /* Fixed height for the video frame */
-            overflow: hidden; /* Ensure video doesn't spill out */
-            border-radius: 8px; /* Maintain rounded corners */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Maintain shadow */
-            display: flex; /* For centering video content */
+            height: auto; /* Changed from fixed height to auto for image flexibility */
+            max-height: 350px; /* Max height to maintain similar visual balance */
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f8f9fa; /* Fallback background if video doesn't load */
+            background-color: #f8f9fa; /* Fallback background */
         }
 
-        .header-video {
+        /* Style for the new image in the hero section */
+        .hero-main-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures video covers the container without distortion */
-            display: block; /* Remove any extra space below video */
+            height: auto;
+            object-fit: contain; /* Ensures the entire image is visible without cropping */
+            display: block;
+            border-radius: 8px; /* Match container border-radius */
         }
 
         /* Sidebar and Main Content Layout */
@@ -166,6 +169,15 @@
         strong {
             font-weight: bold;
         }
+
+        /* Center the "Get Started Today!" button and make it larger */
+        section .btn-success {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1rem 2rem; /* Added padding for larger size */
+            font-size: 1.25rem; /* Increased font size */
+        }
     </style>
 </head>
 <body>
@@ -186,10 +198,8 @@
                         Elevate Your Brand With Promo Palaces
                     </div>
                     <div class="video-container">
-                        <video autoplay loop muted playsinline class="header-video">
-                            <source src="https://trey333333.github.io/promopalaces.github.io/images/promopalacescom-brand-promotion.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                        <!-- Replaced video with image of PromoPalaces logo -->
+                        <img src="https://trey333333.github.io/promopalaces.github.io/images/promopalaceslogonew.png" alt="PromoPalaces Logo" class="hero-main-image">
                     </div>
                     <div class="video-description-text text-white text-center animate__animated animate__fadeInUp mt-4">
                         Discover top-notch promotional products to skyrocket your marketing
@@ -209,7 +219,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="https://trey333333.github.io/promopalaces.github.io/images/promopalaceslogonew.png" alt="PromoPalaces Logo - Promotional Products" height="60" class="me-2">
+            <!-- Removed the image of the logo from here as per request -->
             <span class="fw-bold text-white me-3">PromoPalaces</span>
         </a>
         
@@ -264,6 +274,7 @@
                     <p>Promotional products are a cornerstone of effective marketing, offering <strong>branded merchandise</strong> like <strong>custom apparel</strong>, <strong>branded drinkware</strong>, and <strong>corporate gifts</strong> to boost brand visibility. These items have been used for over a century, starting with commemorative buttons during George Washington's election, and remain a cost-effective strategy today.</p>
                     <p>The long-lasting impact of promotional products sets them apart. Unlike fleeting digital ads, physical items like <strong>promotional pens</strong> or <strong>trade show items</strong> are used for months or years, creating lasting brand impressions. Businesses leverage everything from matchbooks to modern <strong>branded electronics</strong> to win customer loyalty and generate leads.</p>
                     <p>Whether you’re launching a business, attending a trade show, or rewarding clients, <strong>custom promotional items</strong> are powerful tools. PromoPalaces offers a curated catalog of <strong>affordable branded giveaways</strong>, <strong>branded household goods</strong>, and <strong>custom trade show giveaways</strong>, partnered with Executive Advertising, to help you succeed.</p>
+                    <!-- Centered and enlarged "Get Started Today!" button -->
                     <a href="#featured" class="btn btn-success mt-3">Get Started Today!</a>
                 </section>
 
