@@ -9,6 +9,7 @@ const AGENT_ID = /^PP-AG-\d{2}$/;
 const TASK_ID = /^PP-\d{3}$/;
 const PARTNER_ID = /^[A-Z][A-Z0-9]{1,15}-\d{3}$/;
 const DECISION_ID = /^DEC-\d{3,}$/;
+const COMMIT_SHA = /^[0-9a-f]{40}$/;
 const VERSION = /^\d+\.\d+\.\d+$/;
 const PRIORITIES = new Set(["P0", "P1", "P2", "P3"]);
 const STATUSES = new Set(["planned", "in_progress", "blocked", "awaiting_approval", "complete", "cancelled"]);
@@ -207,7 +208,7 @@ function decisionCheck(log, gateIds, agentIds, errors) {
   const ids = new Set();
   log.entries.forEach((entry, index) => {
     const label = "decision_log.entries[" + index + "]";
-    const optional = ["agent_id", "tool_allowlist", "stop_condition", "revokes_decision_id"];
+    const optional = ["agent_id", "tool_allowlist", "stop_condition", "revokes_decision_id", "commit_sha"];
     entry = shape(entry, label, ["id", "timestamp", "decision_type", "task_id", "gate_ids", "scope", "approver_role", "evidence", "expires_at", "status"], optional, errors);
     const id = text(entry.id, label + ".id", errors, DECISION_ID);
     if (ids.has(id)) errors.push("duplicate decision id: " + id);
@@ -225,6 +226,9 @@ function decisionCheck(log, gateIds, agentIds, errors) {
     if (!["approved", "revoked"].includes(entry.status)) errors.push(label + ".status is invalid");
     if (entry.status === "revoked") text(entry.revokes_decision_id, label + ".revokes_decision_id", errors, DECISION_ID);
     else if (Object.hasOwn(entry, "revokes_decision_id")) errors.push(label + ".revokes_decision_id is only valid for revoked decisions");
+    const deploymentAuthorization = entry.status === "approved" && entry.decision_type === "owner_authorization" && gateList.includes("deployment");
+    if (deploymentAuthorization) text(entry.commit_sha, label + ".commit_sha", errors, COMMIT_SHA);
+    else if (Object.hasOwn(entry, "commit_sha")) errors.push(label + ".commit_sha is only valid for approved owner_authorization decisions covering deployment");
     if (entry.decision_type === "execution_enablement") {
       const agent = text(entry.agent_id, label + ".agent_id", errors, AGENT_ID);
       if (!agentIds.has(agent)) errors.push(label + ".agent_id must identify a registry agent");

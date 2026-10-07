@@ -7,6 +7,7 @@ import { validate } from "../tools/validate-orchestrator.mjs";
 
 const SOURCE = resolve(import.meta.dirname, "..");
 const TIMESTAMP = "2026-10-07T22:22:35Z";
+const TEST_COMMIT_SHA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 function fixture(mutate) {
   const root = mkdtempSync(join(tmpdir(), "promopalaces-governance-"));
   try {
@@ -154,6 +155,10 @@ expectErrors("60 rejects partner authorization tasks without both required gates
   data.partners[0].authorization_task_id = "PP-012";
 }), ["authorization_task_id must identify a task requiring publishing and affiliate_tracking_changes gates"]);
 
+expectErrors("61 rejects deployment decisions without an exact commit SHA", (root) => edit(root, "governance/decision-log.json", (data) => {
+  data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"] })];
+}), ["commit_sha must be a nonempty string"]);
+
 test("accepts a valid, active owner decision for partner verification and publication", () => {
   const errors = fixture((root) => {
     edit(root, "affiliates/partners.json", (data) => promotePartner(data.partners[0]));
@@ -168,7 +173,7 @@ test("accepts a valid owner decision before a restricted task completes", () => 
   const errors = fixture((root) => {
     edit(root, "agents/backlog.json", (data) => completeWithEvidence(task(data, "PP-017"), "2026-10-07T22:23:00Z", "2026-10-07T22:24:00Z"));
     edit(root, "governance/decision-log.json", (data) => {
-      data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], timestamp: "2026-10-07T22:23:30Z" })];
+      data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], timestamp: "2026-10-07T22:23:30Z", commit_sha: TEST_COMMIT_SHA })];
     });
   });
   assert.deepEqual(errors, []);

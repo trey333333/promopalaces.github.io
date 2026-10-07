@@ -15,3 +15,5 @@ The workflow should run from an approved release branch, validate the artifact c
 No merge to a release or default branch and no deployment may proceed while GitHub Pages can publish the repository root or otherwise expose governance paths. PP-017 must be completed with explicit owner authorization, implementation evidence, and rollback evidence before either action is eligible. This does not block a local feature-branch commit.
 
 This document does not add a workflow, change GitHub Pages settings, move files, alter the CNAME, or deploy the website. PP-017 records the required future work.
+
+The allowlisted artifact implementation and owner setting instructions are documented in [GitHub Pages Deployment Isolation](github-pages-deployment.md). The GitHub Pages settings themselves remain unchanged and require the PP-017 owner authorization described there.

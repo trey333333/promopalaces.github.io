@@ -31,7 +31,7 @@ These rules apply equally to Codex, Claude, ChatGPT, Forge, and any human-operat
 
 ## Canonical decision records
 
-The decision log starts empty. Do not create a placeholder approval. Every future restricted completion must have a machine-valid owner decision with the exact task ID, required gates, bounded scope, nonempty evidence, UTC expiry, and owner approver. Execution enablement also requires named agent, tool allowlist, and stop condition; see docs/governance/execution-enablement.md.
+The decision log starts empty. Do not create a placeholder approval. It is a repository audit record used by local validation; it does not authenticate an owner or grant GitHub permissions. Every future restricted completion must have a machine-valid record with the exact task ID, required gates, bounded scope, nonempty evidence, UTC expiry, and owner approver. GitHub Pages deployment additionally requires protected-environment review in GitHub, which is the actual authorization boundary. Execution enablement also requires named agent, tool allowlist, and stop condition; see docs/governance/execution-enablement.md.
 
 ## Branch discipline
 
