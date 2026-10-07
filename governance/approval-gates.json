@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.1.0",
+  "default_policy": "deny",
+  "authorization": {"required":"explicit owner authorization","record":"governance/decision-log.json","no_implied_authorization":true},
+  "gates": {
+    "publishing": {"id":"publishing","restricted":true,"owner_authorization_required":true,"restricted_actions":["publishing","partner_claims","claims_approval"],"evidence_requirements":["approved_content","disclosure_review","publish_target"]},
+    "deployment": {"id":"deployment","restricted":true,"owner_authorization_required":true,"restricted_actions":["deployment","production_testing"],"evidence_requirements":["validation_result","release_checklist","rollback_plan"]},
+    "affiliate_applications": {"id":"affiliate_applications","restricted":true,"owner_authorization_required":true,"restricted_actions":["affiliate_applications"],"evidence_requirements":["application_draft","program_terms_review"]},
+    "spending": {"id":"spending","restricted":true,"owner_authorization_required":true,"restricted_actions":["spending","contracting","paid_promotion","asset_licensing","ad_platform_changes"],"evidence_requirements":["vendor_or_partner","amount","currency","budget_approval"]},
+    "affiliate_tracking_changes": {"id":"affiliate_tracking_changes","restricted":true,"owner_authorization_required":true,"restricted_actions":["affiliate_tracking_changes"],"evidence_requirements":["before_and_after_urls","attribution_impact_review","test_plan"]},
+    "production_configuration": {"id":"production_configuration","restricted":true,"owner_authorization_required":true,"restricted_actions":["production_configuration","credentials"],"evidence_requirements":["change_description","security_review","rollback_plan"]},
+    "third_party_integrations": {"id":"third_party_integrations","restricted":true,"owner_authorization_required":true,"restricted_actions":["third_party_integrations","personal_data_processing"],"evidence_requirements":["data_flow_review","terms_and_privacy_review","credential_owner"]},
+    "execution_enablement": {"id":"execution_enablement","restricted":true,"owner_authorization_required":true,"restricted_actions":["execution_enablement"],"evidence_requirements":["named_agent","scope","duration","tool_allowlist","stop_condition"]},
+    "external_communication": {"id":"external_communication","restricted":true,"owner_authorization_required":true,"restricted_actions":["external_communication","legal_advice"],"evidence_requirements":["recipient","message_or_request_draft","approved_scope"]},
+    "data_export": {"id":"data_export","restricted":true,"owner_authorization_required":true,"restricted_actions":["data_export","external_reporting"],"evidence_requirements":["data_inventory","recipient","privacy_review","approved_destination"]}
+  }
+}
