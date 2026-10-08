@@ -8,7 +8,7 @@
   --brand-dark: #0f3d99;
   --mint: #d9f7ed;
   --amber: #fff1cc;
-  --focus: #ef7c00;
+  --focus: #9a3d00;
   --shadow: 0 18px 45px rgba(18, 33, 59, 0.1);
 }
 
@@ -110,7 +110,7 @@ h3 { font-size: 1.1rem; margin-bottom: .45rem; }
 .department-detail { max-width: 760px; }
 .department-detail .notice { background: #fff8e7; border-color: #f0d287; }
 .department-detail ul { padding-left: 1.2rem; }
-.visually-hidden { height: 1px; margin: -1px; overflow: hidden; position: absolute; width: 1px; clip: rect(0, 0, 0, 0); }
+.visually-hidden { clip: rect(0, 0, 0, 0); clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
 
 @media (max-width: 760px) {
   .nav-shell { align-items: flex-start; flex-direction: column; padding-bottom: .8rem; padding-top: .8rem; }

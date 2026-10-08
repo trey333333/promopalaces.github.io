@@ -8,6 +8,7 @@
   <meta name="google-site-verification" content="_PmGPjlrrsZPdBH-g_4dNeMzWwzHzXWD7X5C1pDrjA0">
   <link rel="canonical" href="https://promopalaces.com/">
   <link rel="stylesheet" href="assets/css/marketplace.css">
+  <link rel="stylesheet" href="assets/css/homepage.css">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -18,120 +19,287 @@
     }
   </script>
 </head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <div class="nav-shell">
-      <a class="brand" href="index.html">Promo<span>Palaces</span></a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a aria-current="page" href="index.html">Home</a>
-        <a href="departments.html">Departments</a>
-        <a href="tool-finder.html">Tool Finder</a>
-        <a href="resources.html">Resources</a>
-        <a href="affiliate-disclosure.html">Disclosure</a>
-      </nav>
+
+  <header class="site-header" data-market-header>
+    <div class="market-header-main">
+      <a class="brand" href="index.html" aria-label="PromoPalaces home">
+        <span class="brand__crown" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M6 12 16 22 24 7l8 15 10-10-4 25H10z"></path><path d="M10 37h28"></path></svg>
+        </span>
+        <span class="brand__name"><span class="brand__wordmark">Promo<span>Palaces</span></span><small>Business Marketplace</small></span>
+      </a>
+
+      <div class="market-search-wrap">
+        <form class="market-search" data-marketplace-search action="departments.html" method="get" role="search">
+          <label for="marketplace-search">Search business tools and resources</label>
+          <input id="marketplace-search" data-marketplace-search-input name="query" type="search" aria-describedby="marketplace-search-feedback" placeholder="Search tools, resources, and business needs">
+          <button type="submit">Search</button>
+        </form>
+        <p class="market-search__feedback" id="marketplace-search-feedback" data-search-feedback hidden aria-live="polite"></p>
+      </div>
+
+      <a class="header-finder-link" href="tool-finder.html">Business Tool Finder</a>
+      <button class="menu-toggle" data-menu-toggle type="button" aria-controls="primary-navigation" aria-expanded="false">Menu</button>
     </div>
+
+    <nav class="site-nav" aria-label="Primary navigation" id="primary-navigation">
+      <a aria-current="page" href="index.html">Home</a>
+      <a href="departments.html">Departments</a>
+      <a href="tool-finder.html">Tool Finder</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="affiliate-disclosure.html">Disclosure</a>
+    </nav>
   </header>
 
   <main id="main-content">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Business marketplace</p>
+    <section class="homepage-hero">
+      <div class="homepage-hero__media" aria-hidden="true">
+        <img src="images/marketplace/hero-workspace.jpg" width="1672" height="941" fetchpriority="high" alt="">
+      </div>
+      <div class="homepage-hero__content">
+        <div class="homepage-hero__copy">
+          <p class="eyebrow">The small-business marketplace</p>
           <h1>Everything Your Business Needs to Succeed.</h1>
-          <p class="hero-copy">PromoPalaces is a practical starting point for small-business owners choosing the products, systems, and resources that help them launch, manage, market, and grow with confidence.</p>
+          <p>Find practical products, systems, and resources to launch, manage, market, and grow your business with more clarity and less guesswork.</p>
           <div class="hero-actions">
-            <a class="button" href="tool-finder.html">Find your next business tool</a>
-            <a class="button secondary" href="departments.html">Explore available departments</a>
+            <a class="button button-primary" href="tool-finder.html">Find Your Next Business Tool</a>
+            <a class="button button-secondary" href="#departments">Explore Departments</a>
           </div>
+          <ul class="hero-proof" aria-label="Marketplace highlights">
+            <li>16 business departments</li>
+            <li>Practical planning resources</li>
+            <li>Clear next steps for growth</li>
+          </ul>
         </div>
-        <aside class="hero-panel" aria-label="Marketplace promise">
-          <p class="eyebrow">Built for clear decisions</p>
-          <h2>Start with the work, not the hype.</h2>
-          <p>Use straightforward planning resources and a deterministic Tool Finder. Categories appear only when there is useful information to share.</p>
-        </aside>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="department-heading">
+    <section class="home-section home-section--white" id="departments" aria-labelledby="department-heading">
       <div class="container">
-        <div class="section-heading">
+        <div class="home-heading">
           <div>
             <p class="eyebrow">Marketplace departments</p>
-            <h2 id="department-heading">Business solutions that are ready to explore</h2>
+            <h2 id="department-heading">Find the area that moves your business forward.</h2>
           </div>
-          <p>PromoPalaces is structured for 16 business departments. Only departments with meaningful material are published.</p>
+          <p>Browse the active area now and explore the marketplace roadmap as new resources arrive.</p>
         </div>
-        <div class="card-grid" data-department-cards>
-          <article class="card department-card">
-            <span class="icon-chip">Available now</span>
+
+        <div class="department-grid" aria-label="Business marketplace departments">
+          <article class="department-card department-card--active" data-home-department="promotional-products">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9h16v11H4zM12 9v11M3 5h18v4H3zM12 5c-2.4 0-4-1-4-2.3C8 1.8 9 1.5 10 2c1.1.5 2 1.9 2 3zM12 5c2.4 0 4-1 4-2.3 0-.9-1-.9-2-.4-1.1.5-2 1.9-2 3z"></path></svg></span>
+            <p class="department-card__status">Available now</p>
             <h3>Promotional Products</h3>
-            <p>Branded merchandise for customer appreciation, events, and team visibility.</p>
-            <a href="promotional-products.html">Explore Promotional Products</a>
+            <p>Merchandise for appreciation, events, and team visibility.</p>
+            <a class="department-card__link" href="promotional-products.html">Explore Promotional Products →</a>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="websites-ecommerce">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 8h18M7 6h.01M10 6h.01M8 12h8M8 16h5"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Websites &amp; Ecommerce</h3>
+            <p>Planning for a clear online presence and storefront.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="email-marketing">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6M7 16h4"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Email Marketing</h3>
+            <p>Audience, campaign, and retention planning.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="social-media-marketing">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.25"></circle><circle cx="17.5" cy="6" r="2.25"></circle><circle cx="17.5" cy="18" r="2.25"></circle><path d="m8 11 7.5-4M8 13l7.5 4"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Social Media Marketing</h3>
+            <p>Channel and content systems for social presence.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="seo-advertising">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="5.5"></circle><path d="m14.2 14.2 5.3 5.3M4 19h7M4 15h4"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>SEO &amp; Advertising</h3>
+            <p>Search visibility and measured campaign planning.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="branding-design">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h1.4c1.2 0 1.8-1.4 1-2.3-.7-.8-.1-2.1 1-2.1H17a4 4 0 0 0 4-4 9.7 9.7 0 0 0-9-9.6z"></path><path d="M7.5 11h.01M9 7.5h.01M13 7h.01M16.5 10h.01"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Branding &amp; Design</h3>
+            <p>Brand basics and consistent customer touchpoints.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="sales-crm">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"></circle><circle cx="16" cy="8" r="3"></circle><path d="M3.5 20a4.5 4.5 0 0 1 9 0M11.5 20a4.5 4.5 0 0 1 9 0"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Sales &amp; CRM</h3>
+            <p>Lead management and sales-process planning.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="accounting-finance">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7M3 20h18"></path><path d="m4 8 5-3 4 2 6-4"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Accounting &amp; Finance</h3>
+            <p>Financial operations for sustainable small businesses.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="ai-automation">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 .8 3.2L16 7l-3.2.8L12 11l-.8-3.2L8 7l3.2-.8zM18 13l.6 2.4L21 16l-2.4.6L18 19l-.6-2.4L15 16l2.4-.6zM7 14l.7 2.3L10 17l-2.3.7L7 20l-.7-2.3L4 17l2.3-.7z"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>AI &amp; Automation</h3>
+            <p>Practical automation planning for everyday workflows.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="business-operations">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path><path d="m19 13 2-1-1-3-2.4.1-1.3-2-1-2.2-3-1-1.2 2-2.4.3-1.5-1.8-2.8 1.7.6 2.3-1.4 2L3 10l.2 3 2.3.8 1 2.2-1 2.1 2.5 1.7 1.8-1.5 2.4.5.8 2.2h3l.6-2.3 2.3-1 1.9 1.4 2-2.2-1.3-1.9z"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Business Operations</h3>
+            <p>Repeatable systems for daily business management.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="hr-payroll">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"></circle><path d="M5 21a7 7 0 0 1 14 0M5 7v5M19 7v5M3 5h4M17 5h4"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>HR &amp; Payroll</h3>
+            <p>People-process planning as your business hires.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="customer-support">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1M4 13v4h3v-5H4M20 13v4h-3v-5h3M17 18c0 2-2 3-5 3h-2"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Customer Support</h3>
+            <p>Support workflows for confident repeat business.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="security-it">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6z"></path><path d="m8.8 12 2.1 2.1 4.4-4.4"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Security &amp; IT</h3>
+            <p>Technology and security planning for small teams.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="training-education">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5zM7 11.2V16c2.8 2 7.2 2 10 0v-4.8M21 9v6"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Training &amp; Education</h3>
+            <p>Training plans and business learning resources.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="shipping-logistics">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 10h3l4 4v2h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Shipping &amp; Logistics</h3>
+            <p>Fulfillment and delivery planning for product businesses.</p>
+          </article>
+          <article class="department-card department-card--coming" data-home-department="business-services">
+            <span class="department-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"></path></svg></span>
+            <p class="department-card__status">Coming soon</p>
+            <h3>Business Services</h3>
+            <p>Outside-expertise planning for specialist needs.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container feature-grid">
-        <article class="feature-card">
-          <p class="eyebrow">Featured business solution</p>
-          <h2>Promotional products with a featured partner</h2>
-          <p>Explore promotional-product planning, event and customer-appreciation use cases, and the existing promotional catalog. Offer terms and attribution remain unverified, so no discount or commission claim is displayed.</p>
-          <a class="button" href="promotional-products.html">Explore Promotional Products</a>
-        </article>
-        <article class="finder-prompt">
-          <p class="eyebrow">Business Tool Finder</p>
-          <h2>Not sure where to begin?</h2>
-          <p>Tell us your business type, stage, and primary need. The Tool Finder returns relevant marketplace departments and planning resources without paid AI or invented recommendations.</p>
-          <a class="button" href="tool-finder.html">Open the Tool Finder</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="resource-heading">
+    <section class="home-section home-section--soft" id="finder" aria-labelledby="finder-heading">
       <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Educational resources</p>
-            <h2 id="resource-heading">Useful planning before you add another tool</h2>
+        <div class="finder-feature">
+          <div class="finder-feature__intro">
+            <p class="eyebrow">Business Tool Finder</p>
+            <h2 id="finder-heading">A clearer way to choose your next step.</h2>
+            <p>Tell us where your business is today. The Tool Finder matches your inputs with relevant live departments and planning resources to help you choose an informed next move.</p>
+            <a class="button" href="tool-finder.html">Use the Business Tool Finder</a>
           </div>
-          <a href="resources.html">View all planning resources</a>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Business launch planning worksheet</h3>
-            <p>Clarify your customer, offer, essential operations, and immediate next steps.</p>
-            <a href="resources.html#launch-planning">Open worksheet prompts</a>
-          </article>
-          <article class="card">
-            <h3>Small-business marketing foundations</h3>
-            <p>Focus a message, choose a channel, and set a realistic measurement habit.</p>
-            <a href="resources.html#marketing-basics">Review marketing basics</a>
-          </article>
-          <article class="card">
-            <h3>Tool selection questions</h3>
-            <p>Compare options by workflow fit, ownership, support, and total cost—not just a feature list.</p>
-            <a href="resources.html#tool-selection">Use the questions</a>
-          </article>
+          <div class="finder-feature__steps" aria-label="How the Business Tool Finder works">
+            <article class="finder-step">
+              <span class="finder-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20v-9l8-5 8 5v9M8 20v-5h8v5M12 3v3"></path></svg></span>
+              <h3>Share your starting point</h3>
+              <p>Choose your business type, stage, and priority.</p>
+            </article>
+            <article class="finder-step">
+              <span class="finder-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="5"></circle><path d="m14 14 5 5M7 10h6M10 7v6"></path></svg></span>
+              <h3>Get a focused match</h3>
+              <p>See live departments and practical planning guides.</p>
+            </article>
+            <article class="finder-step">
+              <span class="finder-step__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path><path d="M4 4h16v16H4z"></path></svg></span>
+              <h3>Take a clear next step</h3>
+              <p>Every result explains why it appears for you.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
+    <section class="home-section home-section--white" id="featured-partner" aria-labelledby="partner-heading">
       <div class="container">
-        <ul class="trust-list" aria-label="Marketplace commitments">
-          <li><strong>No invented claims</strong><span>Unverified prices, ratings, commissions, and offers stay out of recommendations.</span></li>
-          <li><strong>Transparent relationships</strong><span>Affiliate disclosure appears wherever a qualifying partner link is presented.</span></li>
-          <li><strong>Built for useful growth</strong><span>Departments launch only with meaningful planning material or approved recommendations.</span></li>
-        </ul>
+        <div class="partner-feature">
+          <div class="partner-feature__copy">
+            <p class="eyebrow">Featured business solution</p>
+            <h2 id="partner-heading">Promotional products that make a business memorable.</h2>
+            <p>Explore practical planning for customer appreciation, events, team visibility, and brand touchpoints. Executive Advertising is our featured promotional products partner.</p>
+            <ul class="partner-feature__checklist">
+              <li>Start with the audience and business purpose.</li>
+              <li>Confirm quantities, production timing, and delivery needs.</li>
+              <li>Review catalog details before making an ordering decision.</li>
+            </ul>
+            <p class="partner-feature__label">Promotional offers will appear once terms and attribution are verified</p>
+            <a class="button" href="promotional-products.html">Explore Promotional Products</a>
+          </div>
+          <figure>
+            <img src="images/marketplace/executive-advertising-merchandise.jpg" width="1536" height="1024" loading="lazy" alt="Unbranded promotional merchandise including a tote bag, notebook, mug, pen, and cap">
+            <figcaption>Illustrative merchandise imagery; it is not a verified Executive Advertising catalog selection.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container disclosure">
-        <strong>Affiliate disclosure:</strong> PromoPalaces may earn a commission from qualifying purchases made through disclosed partner links, at no additional cost to you. Current promotional offers are not displayed until their terms and attribution are verified. <a href="affiliate-disclosure.html">Read the full disclosure.</a>
+    <section class="home-section home-section--soft" id="resources" aria-labelledby="resource-heading">
+      <div class="container">
+        <div class="home-heading">
+          <div>
+            <p class="eyebrow">Business resources</p>
+            <h2 id="resource-heading">Useful guidance before you add another tool.</h2>
+          </div>
+          <p>Start with a clear plan, then choose the tools and services that support it.</p>
+        </div>
+        <div class="resource-grid">
+          <article class="resource-card">
+            <div class="resource-card__media">
+              <img class="resource-card__image" src="images/marketplace/resource-launch-planning.jpg" width="1536" height="1024" loading="lazy" alt="A notebook, planning worksheet, and pen arranged on a workspace">
+            </div>
+            <div class="resource-card__content">
+              <h3>Business launch planning worksheet</h3>
+              <p>Clarify the customer, offer, essential operations, and immediate next steps.</p>
+              <a href="resources.html#launch-planning">Open worksheet prompts →</a>
+            </div>
+          </article>
+          <article class="resource-card">
+            <div class="resource-card__media">
+              <img class="resource-card__image" src="images/marketplace/resource-marketing-foundations.jpg" width="1536" height="1024" loading="lazy" alt="A smartphone, color swatches, and simple marketing planning materials">
+            </div>
+            <div class="resource-card__content">
+              <h3>Small-business marketing foundations</h3>
+              <p>Focus your message, choose a channel, and set a realistic measurement habit.</p>
+              <a href="resources.html#marketing-basics">Review marketing basics →</a>
+            </div>
+          </article>
+          <article class="resource-card">
+            <div class="resource-card__media">
+              <img class="resource-card__image" src="images/marketplace/resource-tool-selection.jpg" width="1536" height="1024" loading="lazy" alt="Abstract business tool cards and a checklist on a workspace">
+            </div>
+            <div class="resource-card__content">
+              <h3>Tool selection questions</h3>
+              <p>Compare options by workflow fit, ownership, support, and total cost.</p>
+              <a href="resources.html#tool-selection">Use the questions →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-band" aria-label="PromoPalaces commitments">
+      <div class="trust-band__inner">
+        <div class="trust-band__item">
+          <span class="trust-band__icon" aria-hidden="true">✓</span>
+          <div><strong>Plan with clarity</strong><p>Start with guidance for common business decisions.</p></div>
+        </div>
+        <div class="trust-band__item">
+          <span class="trust-band__icon" aria-hidden="true">◈</span>
+          <div><strong>Transparent relationships</strong><p>Clear disclosures accompany qualifying affiliate links.</p></div>
+        </div>
+        <div class="trust-band__item">
+          <span class="trust-band__icon" aria-hidden="true">↗</span>
+          <div><strong>Built to grow with you</strong><p>New departments arrive only with useful material.</p></div>
+        </div>
       </div>
     </section>
   </main>
@@ -139,15 +307,37 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <a class="brand" href="index.html">Promo<span>Palaces</span></a>
+        <a class="brand" href="index.html">
+          <span class="brand__crown" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M6 12 16 22 24 7l8 15 10-10-4 25H10z"></path><path d="M10 37h28"></path></svg>
+          </span>
+        <span class="brand__name"><span class="brand__wordmark">Promo<span>Palaces</span></span><small>Business Marketplace</small></span>
+        </a>
         <p>Everything Your Business Needs to Succeed.</p>
       </div>
       <div>
-        <a href="about.html">About</a> · <a href="affiliate-disclosure.html">Affiliate disclosure</a> · <a href="resources.html">Resources</a>
-        <p>© <span data-current-year>2026</span> PromoPalaces</p>
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="tool-finder.html">Business Tool Finder</a></li>
+          <li><a href="resources.html">Business Resources</a></li>
+          <li><a href="promotional-products.html">Promotional Products</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>PromoPalaces</h2>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
+        </ul>
       </div>
     </div>
+    <div class="footer-disclosure">
+      PromoPalaces may earn a commission from qualifying purchases made through disclosed affiliate links, at no additional cost to you. Promotional offers are not displayed until their terms and attribution are verified. <a href="affiliate-disclosure.html">Read the full disclosure.</a>
+      <br><span>© <span data-current-year>2026</span> PromoPalaces</span>
+    </div>
   </footer>
+
   <script src="assets/js/marketplace-config.js"></script>
   <script src="assets/js/site.js"></script>
 </body>

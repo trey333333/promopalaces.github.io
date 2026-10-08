@@ -40,7 +40,7 @@ function executiveAdvertisingTags(html) {
 }
 
 function primaryNavigation(html) {
-  const navigation = html.match(/<nav class="site-nav" aria-label="Primary navigation">([\s\S]*?)<\/nav>/);
+  const navigation = html.match(/<nav\b(?=[^>]*\bclass="site-nav")(?=[^>]*\baria-label="Primary navigation")[^>]*>([\s\S]*?)<\/nav>/);
   assert.ok(navigation, "Expected the shared primary navigation.");
   return navigation[1];
 }
@@ -155,11 +155,12 @@ test("keeps published navigation usable without JavaScript and confines indexing
     assert.match(legacyNavigation[1], new RegExp('href="' + href + '"'));
   }
 
-  for (const path of ["index.html", "departments.html"]) {
-    const html = page(path);
-    assert.match(html, /<article class="card department-card">[\s\S]*?href="promotional-products\.html"/);
-    assert.doesNotMatch(html, /Enable JavaScript to load currently available/);
-  }
+  const home = page("index.html");
+  assert.match(home, /<article class="department-card department-card--active" data-home-department="promotional-products">[\s\S]*?href="promotional-products\.html"/);
+  assert.doesNotMatch(home, /Enable JavaScript to load currently available/);
+  const departments = page("departments.html");
+  assert.match(departments, /<article class="card department-card">[\s\S]*?href="promotional-products\.html"/);
+  assert.doesNotMatch(departments, /Enable JavaScript to load currently available/);
 
   const sitemap = page("sitemap.xml");
   for (const path of ["legacy-promotional-products.html", "shop.html"]) {
