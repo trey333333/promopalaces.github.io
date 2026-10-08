@@ -4,6 +4,12 @@
     "CNAME",
     "about.html",
     "affiliate-disclosure.html",
+    "assets/css/marketplace.css",
+    "assets/js/department-page.js",
+    "assets/js/marketplace-config.js",
+    "assets/js/site.js",
+    "assets/js/tool-finder.js",
+    "departments.html",
     "google91250e6e2fdfde57.html",
     "images/137415_t.jpg",
     "images/145-1456018_made-in-usa-made-in-usa-logo.png",
@@ -29,8 +35,14 @@
     "images/stickergiant-sale.gif",
     "images/usamadeanimated.jpg",
     "index.html",
+    "legacy-promotional-products.html",
     "logo.png",
+    "promotional-products.html",
+    "resources.html",
+    "robots.txt",
     "shop.html",
-    "style.css"
+    "sitemap.xml",
+    "style.css",
+    "tool-finder.html"
   ]
 }
