@@ -1,0 +1,448 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "internal_research_backlog",
+  "last_verified_at": "2026-10-08",
+  "purpose": "Research-only affiliate candidate backlog for owner review. This file is not an affiliate partner registry, application, approval, contract, tracking configuration, or publication authorization.",
+  "publication_prohibition": {
+    "default": "prohibited",
+    "public_links_allowed": false,
+    "affiliate_identifiers_allowed": false,
+    "tracking_changes_allowed": false,
+    "reason": "No candidate may be added to public pages, the public deployment manifest, or the hardened partner registry until each required owner-approved transition and verification is complete.",
+    "required_before_publication": [
+      "owner-approved affiliate application",
+      "provider acceptance and assigned tracking identifier",
+      "tracking verification",
+      "active owner decisions covering affiliate_tracking_changes and publishing",
+      "disclosure and release review"
+    ]
+  },
+  "workflow": [
+    "candidate",
+    "researched",
+    "application_approved_by_owner",
+    "applied",
+    "accepted",
+    "tracking_verified",
+    "publication_approved"
+  ],
+  "exclusive_department_policy": {
+    "department_id": "promotional-products",
+    "policy": "Executive Advertising (EA-001, affiliate ID 1056) remains the only permitted promotional merchandise affiliate. This research backlog must not add or research a competing promotional merchandise referral.",
+    "source": "affiliates/partners.json and assets/js/marketplace-config.js"
+  },
+  "department_backlog": [
+    {
+      "department_id": "promotional-products",
+      "department_name": "Promotional Products",
+      "research_status": "exclusive_policy_no_candidates",
+      "candidate_ids": [],
+      "launch_criteria": "Executive Advertising attribution and offer terms remain separately unverified; follow PP-012 and PP-016. No competing merchandise candidates are permitted."
+    },
+    {
+      "department_id": "websites-ecommerce",
+      "department_name": "Websites & Ecommerce",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-HOSTINGER-001", "ARC-SHOPIFY-001"],
+      "launch_criteria": "Select one or more accepted, tracking-verified partners; publish only a complete department page with neutral selection guidance, disclosures, and owner publication authorization."
+    },
+    {
+      "department_id": "email-marketing",
+      "department_name": "Email Marketing",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-GETRESPONSE-001"],
+      "launch_criteria": "Use a verified affiliate link only after application, acceptance, tracking verification, content review, disclosure review, and owner publication authorization."
+    },
+    {
+      "department_id": "social-media-marketing",
+      "department_name": "Social Media Marketing",
+      "research_status": "candidate_research_needed",
+      "candidate_ids": [],
+      "launch_criteria": "Research official publisher programs, regional eligibility, paid-social restrictions, and disclosure requirements before selecting any candidate."
+    },
+    {
+      "department_id": "seo-advertising",
+      "department_name": "SEO & Advertising",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-SEMRUSH-001"],
+      "launch_criteria": "Confirm the then-current Impact agreement, assigned link, tracked conversion rules, and approved educational content before any public recommendation."
+    },
+    {
+      "department_id": "branding-design",
+      "department_name": "Branding & Design",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-ADOBE-001"],
+      "launch_criteria": "Confirm regional program eligibility, the current Partnerise campaign terms, approved links, and a non-misleading design-tool guide before publication."
+    },
+    {
+      "department_id": "sales-crm",
+      "department_name": "Sales & CRM",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-HUBSPOT-001"],
+      "launch_criteria": "Confirm application acceptance, permitted promotional channels, link tracking, and a workflow-led CRM guide before owner-approved publication."
+    },
+    {
+      "department_id": "accounting-finance",
+      "department_name": "Accounting & Finance",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-FRESHBOOKS-001"],
+      "launch_criteria": "Confirm eligibility by region, PartnerStack offer terms, tracked link behavior, and a non-advisory bookkeeping-tool guide before publication."
+    },
+    {
+      "department_id": "ai-automation",
+      "department_name": "AI & Automation",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-MAKE-001"],
+      "launch_criteria": "Confirm account requirements, affiliate-code ownership, paid-search restrictions, tracking, and an original workflow-planning guide before publication."
+    },
+    {
+      "department_id": "business-operations",
+      "department_name": "Business Operations",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-MAKE-001"],
+      "launch_criteria": "Publish only after the automation candidate is accepted and verified, with operational use-case content and the same tracking and disclosure controls."
+    },
+    {
+      "department_id": "hr-payroll",
+      "department_name": "HR & Payroll",
+      "research_status": "candidate_research_needed",
+      "candidate_ids": [],
+      "launch_criteria": "Research official programs and jurisdiction-specific employment, payroll, privacy, and paid-search limitations before candidate selection."
+    },
+    {
+      "department_id": "customer-support",
+      "department_name": "Customer Support",
+      "research_status": "candidate_research_needed",
+      "candidate_ids": [],
+      "launch_criteria": "Research official programs and verify data-processing, service claims, regional availability, and affiliate terms before candidate selection."
+    },
+    {
+      "department_id": "security-it",
+      "department_name": "Security & IT",
+      "research_status": "candidate_research_needed",
+      "candidate_ids": [],
+      "launch_criteria": "Research official programs only after a security-claims review; do not publish recommendations without verified capability, pricing, and regional terms."
+    },
+    {
+      "department_id": "training-education",
+      "department_name": "Training & Education",
+      "research_status": "candidate_research_needed",
+      "candidate_ids": [],
+      "launch_criteria": "Research official programs, educator eligibility, credential claims, and refund restrictions before candidate selection."
+    },
+    {
+      "department_id": "shipping-logistics",
+      "department_name": "Shipping & Logistics",
+      "research_status": "candidate_research_needed",
+      "candidate_ids": [],
+      "launch_criteria": "Research official programs, service-area coverage, commercial-account requirements, and shipping-claim restrictions before candidate selection."
+    },
+    {
+      "department_id": "business-services",
+      "department_name": "Business Services",
+      "research_status": "researched_candidates",
+      "candidate_ids": ["ARC-ZENBUSINESS-001"],
+      "launch_criteria": "Confirm jurisdiction coverage, Awin acceptance, assigned link, tracking, and legal-claim review before publishing an educational business-formation resource."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "ARC-GETRESPONSE-001",
+      "name": "GetResponse",
+      "department_ids": ["email-marketing"],
+      "priority": "P0",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.getresponse.com/affiliate-programs",
+      "network": "PartnerStack",
+      "published_terms": {
+        "commission": "40% recurring commission for the first 12 months at Bronze; 50% after 50 sales in 12 months; 60% after 100 sales in 12 months.",
+        "cookie": "90 days.",
+        "restrictions": [
+          "The application must use complete and accurate information.",
+          "No self-purchases or affiliate-funded accounts.",
+          "No incentives or cashback to prospects; paid advertising and direct-linking require prior written or email consent."
+        ],
+        "source_urls": [
+          "https://www.getresponse.com/affiliate-programs",
+          "https://www.getresponse.com/legal/affiliate-program"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "Public program terms are subject to the agreement presented at application; do not rely on a historical rate or use a promo code unless the provider expressly approves it."
+      },
+      "proposed_content": "Email marketing platform selection checklist for small businesses, with workflow-fit questions and no performance claims.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-HOSTINGER-001",
+      "name": "Hostinger",
+      "department_ids": ["websites-ecommerce"],
+      "priority": "P0",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.hostinger.com/affiliates",
+      "network": "Hostinger affiliate platform",
+      "published_terms": {
+        "commission": "The public program page says commissions start at 40% and scale with eligible sales volume; the published affiliate agreement describes up to 40% for specified eligible products. Confirm the governing offer at application.",
+        "cookie": "Up to 30 days in the published affiliate agreement.",
+        "restrictions": [
+          "Affiliate account verification is required before using the dashboard.",
+          "Do not use iframes or other technology that places a tracking cookie without a real click.",
+          "Commissions are payable after the 30-day money-back period; the applicable agreement controls eligible products and payout terms."
+        ],
+        "source_urls": [
+          "https://www.hostinger.com/affiliates",
+          "https://www.hostinger.com/br/legal/contrato-de-programas-afiliados",
+          "https://www.hostinger.com/support/1583263-how-are-affiliate-commissions-paid-at-hostinger/"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "The agreement source is a localized official page; owner review must confirm the governing terms for PromoPalaces' jurisdiction before application."
+      },
+      "proposed_content": "Small-business website launch planning guide that compares requirements without price, uptime, or feature claims.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-SHOPIFY-001",
+      "name": "Shopify",
+      "department_ids": ["websites-ecommerce"],
+      "priority": "P0",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.shopify.com/affiliates",
+      "network": "Impact",
+      "published_terms": {
+        "commission": "Up to US$150 per qualified referral; amount varies by referral location and applies to qualifying full-price Basic, Grow, or Advanced plan referrals.",
+        "cookie": "30 days from click; if a referral starts a free trial, Shopify states it tracks conversion to a Paid Trial and Full Price store for up to 400 days.",
+        "restrictions": [
+          "The program prioritizes applicants with an active website, an established merchant audience, original commerce or entrepreneurship content, and relevant experience.",
+          "Not every application is approved.",
+          "Commission is earned only when the referred merchant purchases a qualifying full-price plan."
+        ],
+        "source_urls": [
+          "https://www.shopify.com/affiliates",
+          "https://help.shopify.com/en/affiliates",
+          "https://help.shopify.com/en/affiliates/earnings"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "Location-specific payout tables and the current program terms must be reconfirmed in the affiliate application and Impact account."
+      },
+      "proposed_content": "Ecommerce launch decision guide covering catalog, fulfillment, payments, and support readiness without product endorsements until approved.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-SEMRUSH-001",
+      "name": "Semrush",
+      "department_ids": ["seo-advertising"],
+      "priority": "P0",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.semrush.com/lp/affiliate-program/en/",
+      "network": "Impact",
+      "published_terms": {
+        "commission": "The current public program page advertises US$100–US$300 per sale plus US$10 per free trial; the provider notes payout can vary by product and tier.",
+        "cookie": "120-day, last-click cookie according to the public program page.",
+        "restrictions": [
+          "Program enrollment and the applicable partner terms are handled through Impact.",
+          "The public page does not publish a complete traffic-source or paid-search rule set; the owner must review the then-current Impact agreement before applying or promoting."
+        ],
+        "source_urls": [
+          "https://www.semrush.com/lp/affiliate-program/en/",
+          "https://www.semrush.com/kb/97-affiliate-program"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "Current public marketing and help content differ on maximum payout language; the signed/current Impact offer is the source of truth."
+      },
+      "proposed_content": "SEO research workflow guide focused on goals, search intent, and measurement questions; no rankings or outcome claims.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-HUBSPOT-001",
+      "name": "HubSpot",
+      "department_ids": ["sales-crm"],
+      "priority": "P1",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.hubspot.com/partners/affiliates",
+      "network": "Impact",
+      "published_terms": {
+        "commission": "30% monthly recurring commission for up to one year on qualified referrals.",
+        "cookie": "180 days on the public program page; the agreement notes cookie settings are part of the affiliate tool and can change.",
+        "restrictions": [
+          "Disclose the affiliate relationship and list intended websites/domains in the affiliate tool.",
+          "Do not bid on HubSpot branded keywords, cookie stuff, use misleading links, mask referrers, or self-purchase.",
+          "Do not refer clients being serviced or act as the referred account's billing contact or user."
+        ],
+        "source_urls": [
+          "https://www.hubspot.com/partners/affiliates",
+          "https://www.hubspot.com/partners/affiliates/program-policies",
+          "https://legal.hubspot.com/affiliate-program-agreement"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "The affiliate tool and current agreement control the operative terms."
+      },
+      "proposed_content": "CRM workflow planning guide for lead capture, follow-up, ownership, and customer handoffs, without capability or performance claims.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-FRESHBOOKS-001",
+      "name": "FreshBooks",
+      "department_ids": ["accounting-finance"],
+      "priority": "P1",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.freshbooks.com/affiliate-program",
+      "network": "PartnerStack",
+      "published_terms": {
+        "commission": "Up to US$200 per paid subscriber; the exact qualified events and commission structure are shown in the network account or written offer.",
+        "cookie": "Unconfigured: public terms confirm cookies or similar technology are used but do not publish a cookie duration.",
+        "restrictions": [
+          "Clearly disclose the affiliate relationship.",
+          "No self-referrals, fake coupons, trademark bidding, direct linking from paid ads, cookie stuffing, forced clicks, or tracking overwrite tactics.",
+          "Coupon, deal, loyalty, toolbar, browser-extension, and sub-affiliate activity needs provider approval where required."
+        ],
+        "source_urls": [
+          "https://www.freshbooks.com/affiliate-program",
+          "https://www.freshbooks.com/policies/affiliate-program"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "Cookie duration and exact rates must be captured from the current PartnerStack offer after owner-approved application; no financial or tax advice may be implied."
+      },
+      "proposed_content": "Small-business bookkeeping workflow checklist framed as operational education, not accounting, tax, or legal advice.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-ADOBE-001",
+      "name": "Adobe",
+      "department_ids": ["branding-design"],
+      "priority": "P1",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.adobe.com/uk/affiliates.html",
+      "network": "Partnerise",
+      "published_terms": {
+        "commission": "For listed eligible Creative Cloud, Adobe Express, and Document Cloud plans: 85% of the first month for monthly or annual-paid-monthly plans, and 8.33% of the first year for annual prepaid plans; Adobe Stock has separate published amounts.",
+        "cookie": "30 days for a qualified sale after a referral link click.",
+        "restrictions": [
+          "Trial, cancelled, invalid, and fraudulent orders receive no commission.",
+          "Properly tagged deep links are required; Adobe and Partnerise do not pay for inaccurate or broken links.",
+          "Document Cloud and Adobe Stock availability is limited to specified countries; confirm regional campaign eligibility."
+        ],
+        "source_urls": [
+          "https://www.adobe.com/uk/affiliates.html"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "This is an official UK program page. Owner review must verify the campaign and terms applicable to PromoPalaces' intended audience before application."
+      },
+      "proposed_content": "Brand asset and visual consistency planning guide with illustrative examples only; do not claim a tool is required for a business outcome.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-MAKE-001",
+      "name": "Make",
+      "department_ids": ["ai-automation", "business-operations"],
+      "priority": "P1",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.make.com/en/affiliate",
+      "network": "Make affiliate dashboard",
+      "published_terms": {
+        "commission": "35% of subscription payments from a referred user for 12 months from registration using the affiliate link; extra operations are excluded.",
+        "cookie": "Unconfigured: the public program describes a 12-month commission period from referred-user registration, not a published browser-cookie duration.",
+        "restrictions": [
+          "A Make account, a permanent unique affiliate code, and Wise payout details are required.",
+          "Referred users cannot be added retroactively.",
+          "Do not use the Make trademark in paid ads, ad copy, metadata, or search advertising without prior written consent."
+        ],
+        "source_urls": [
+          "https://www.make.com/en/affiliate",
+          "https://help.make.com/affiliate-program"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "The provider's public FAQ contains inconsistent references to affiliate-duration wording; obtain current dashboard terms and owner approval before selecting a permanent code."
+      },
+      "proposed_content": "Workflow automation readiness guide with process-mapping and data-handling questions; do not promise integrations, outcomes, or AI capability without verification.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    },
+    {
+      "id": "ARC-ZENBUSINESS-001",
+      "name": "ZenBusiness",
+      "department_ids": ["business-services"],
+      "priority": "P1",
+      "research_status": "researched",
+      "approval_status": "not_approved",
+      "application_status": "not_applied",
+      "tracking_status": "not_available",
+      "publication_status": "prohibited",
+      "execution_enabled": false,
+      "tracking_identifier": {"value": null, "status": "not_assigned"},
+      "application_entry_url": "https://www.zenbusiness.com/affiliate-program/",
+      "network": "Awin",
+      "published_terms": {
+        "commission": "US$75 for Starter, US$125 for Pro, and US$175 for Premium for each new customer who purchases through the affiliate link and forms a new business; higher volume tiers may be available.",
+        "cookie": "30 days from click to conversion according to the public FAQ.",
+        "restrictions": [
+          "The program is for publisher, creator, influencer, and review-site partners that apply through Awin.",
+          "Coupon/deal sites, loyalty/cashback programs, brand bidding, and paid-search activity are not permitted.",
+          "Jurisdictional availability and service claims require review; PromoPalaces content must not present legal advice."
+        ],
+        "source_urls": [
+          "https://www.zenbusiness.com/affiliate-program/",
+          "https://www.zenbusiness.com/partners/"
+        ],
+        "verified_at": "2026-10-08",
+        "qualification": "The current Awin offer and provider terms control; application does not authorize public legal-service claims or recommendations."
+      },
+      "proposed_content": "Business-formation planning checklist that explains questions to consider and directs readers to qualified professionals where appropriate; it is not legal advice.",
+      "next_required_transition": "application_approved_by_owner",
+      "required_gate": "affiliate_applications"
+    }
+  ]
+}
