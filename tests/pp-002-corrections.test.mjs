@@ -6,7 +6,7 @@ import test from "node:test";
 import vm from "node:vm";
 
 const ROOT = resolve(import.meta.dirname, "..");
-const BASELINE_COMMIT = "d35f83f";
+const BASELINE_COMMIT = "d35f83fdeedc6d98e995db49b13410d4de909941";
 const GOOGLE_VERIFICATION = "_PmGPjlrrsZPdBH-g_4dNeMzWwzHzXWD7X5C1pDrjA0";
 const LEGACY_BLANK_AID_URL = "https://www.executiveadvertising.com/made-in-usa?aid=";
 const MARKETPLACE_PAGES = [

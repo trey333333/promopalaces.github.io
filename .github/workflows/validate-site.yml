@@ -1,0 +1,46 @@
+name: PromoPalaces CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the exact triggering revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+      - name: Validate governance metadata
+        run: node tools/validate-orchestrator.mjs
+      - name: Run complete regression suite
+        run: node --test tests/*.test.mjs
+      - name: Build allowlisted public artifact
+        run: node tools/build-public-site.mjs --artifact dist
+      - name: Validate allowlisted public artifact
+        run: node tools/validate-public-artifact.mjs --artifact dist
+      - name: Verify artifact excludes internal paths
+        run: |
+          test ! -e dist/agents
+          test ! -e dist/affiliates
+          test ! -e dist/governance
+          test ! -e dist/tests
+          test ! -e dist/tools
+          test ! -e dist/docs
+          test ! -e dist/deployment
+          test ! -e dist/AGENTS.md
