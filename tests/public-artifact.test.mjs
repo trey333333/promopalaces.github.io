@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import test from "node:test";
@@ -27,6 +28,14 @@ function temporaryManifest(callback) {
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+}
+
+function initializeGitRepository(root) {
+  execFileSync("git", ["-C", root, "init", "-q"], { stdio: "ignore" });
+  execFileSync("git", ["-C", root, "config", "user.email", "test@example.invalid"], { stdio: "ignore" });
+  execFileSync("git", ["-C", root, "config", "user.name", "PromoPalaces Test"], { stdio: "ignore" });
+  execFileSync("git", ["-C", root, "add", "."], { stdio: "ignore" });
+  execFileSync("git", ["-C", root, "commit", "-qm", "fixture"], { stdio: "ignore" });
 }
 
 test("builds exactly the approved public artifact", () => temporaryArtifact((artifact) => {
@@ -69,19 +78,113 @@ test("does not permit a local build to overwrite source or internal directories"
   assert.throws(() => buildPublicSite({ root: ROOT, artifact: resolve(ROOT, "..", "outside-artifact") }), /must be a non-source directory inside the repository/);
 });
 
-test("keeps Pages deployment manual and environment-protected", () => {
+test("keeps Pages deployment manual, target-bound, and environment-protected", () => {
   assert.match(WORKFLOW, /^on:\r?\n  workflow_dispatch:/m);
   assert.doesNotMatch(WORKFLOW, /^\s*(?:push|pull_request):/m);
   assert.match(WORKFLOW, /if: github\.ref == 'refs\/heads\/main'/);
   assert.match(WORKFLOW, /environment:\r?\n      name: github-pages/);
   assert.match(WORKFLOW, /validate-deployment-authorization\.mjs/);
-  assert.match(WORKFLOW, new RegExp("COMMIT_SHA: " + "\\$\\{\\{ github\\.sha \\}\\}"));
-  assert.match(WORKFLOW, /--commit-sha "\$COMMIT_SHA"/);
+  assert.match(WORKFLOW, /validate-deployment-history\.mjs/);
+  assert.match(WORKFLOW, /target_commit_sha:/);
+  assert.match(WORKFLOW, /tooling_commit_sha:/);
+  assert.match(WORKFLOW, new RegExp("CONTROL_COMMIT_SHA: " + "\\$\\{\\{ github\\.sha \\}\\}"));
+  assert.match(WORKFLOW, /--target-commit-sha "\$TARGET_COMMIT_SHA"/);
+  assert.match(WORKFLOW, /--tooling-commit-sha "\$TOOLING_COMMIT_SHA"/);
+  assert.match(WORKFLOW, /--control-commit-sha "\$CONTROL_COMMIT_SHA"/);
+  assert.match(WORKFLOW, /path: release-tooling/);
+  assert.match(WORKFLOW, /path: release-tooling\/release-source/);
+  assert.match(WORKFLOW, /git -C release-tooling rev-parse HEAD/);
+  assert.match(WORKFLOW, /git -C release-tooling\/release-source rev-parse HEAD/);
+  assert.match(WORKFLOW, /working-directory: release-tooling\r?\n        env:\r?\n          TARGET_COMMIT_SHA: \$\{\{ inputs\.target_commit_sha \}\}\r?\n        run: node tools\/build-public-site\.mjs --source-root release-source --artifact public-site --expected-commit-sha "\$TARGET_COMMIT_SHA"/);
+  const toolingIntegrityCommands = [...WORKFLOW.matchAll(/git(?: -C release-control)? diff --exit-code [^\r\n]+/g)].map((match) => match[0]);
+  assert.equal(toolingIntegrityCommands.length, 2);
+  for (const command of toolingIntegrityCommands) {
+    assert.match(command, /tools\/validate-orchestrator\.mjs/);
+    assert.match(command, /tools\/validate-deployment-authorization\.mjs/);
+  }
+  assert.match(WORKFLOW, /tools\/build-public-site\.mjs --source-root release-source --artifact public-site/);
+  assert.match(WORKFLOW, /tools\/validate-public-artifact\.mjs --source-root release-source --artifact public-site/);
+  assert.match(WORKFLOW, /path: release-tooling\/release-source\/public-site/);
+  assert.match(WORKFLOW, /Check out the current authoritative main state/);
+  assert.match(WORKFLOW, /ref: refs\/heads\/main/);
+  assert.match(WORKFLOW, /--governance-root authorization-state/);
+  assert.match(WORKFLOW, /Revalidate current authorization immediately before deployment[\s\S]*uses: actions\/deploy-pages/);
+  assert.doesNotMatch(WORKFLOW, /--commit-sha/);
   assert.match(WORKFLOW, /persist-credentials: false/);
   for (const action of ["actions/checkout", "actions/setup-node", "actions/upload-pages-artifact", "actions/deploy-pages"]) {
     assert.match(WORKFLOW, new RegExp("uses: " + action.replace("/", "\\/") + "@[0-9a-f]{40}"));
   }
 });
+
+test("accepts a separately checked-out Git regular-file source root but rejects escaping it", () => temporaryManifest((root) => {
+  const target = join(root, "release-source");
+  mkdirSync(join(target, "deployment"), { recursive: true });
+  writeFileSync(join(target, "deployment", "public-assets.json"), JSON.stringify({ schema_version: "1.0.0", files: ["index.html"] }));
+  writeFileSync(join(target, "index.html"), "<!doctype html>");
+  initializeGitRepository(target);
+  const files = buildPublicSite({ root: target, artifact: join(target, "public-site") });
+  assert.deepEqual(files, ["index.html"]);
+  assert.throws(
+    () => buildPublicSite({ root: target, artifact: join(root, "outside-target") }),
+    /must be a non-source directory inside the repository/
+  );
+}));
+
+test("rejects a Git symlink entry even when the working-tree path is a regular file", () => temporaryManifest((root) => {
+  const target = join(root, "release-source");
+  mkdirSync(join(target, "deployment"), { recursive: true });
+  writeFileSync(join(target, "deployment", "public-assets.json"), JSON.stringify({ schema_version: "1.0.0", files: ["index.html"] }));
+  writeFileSync(join(target, "index.html"), "regular working-tree content");
+  initializeGitRepository(target);
+  const symlinkBlob = execFileSync("git", ["-C", target, "hash-object", "-w", "--stdin"], { input: "outside-target", encoding: "utf8" }).trim();
+  execFileSync("git", ["-C", target, "update-index", "--add", "--cacheinfo", "120000," + symlinkBlob + ",index.html"], { stdio: "ignore" });
+  execFileSync("git", ["-C", target, "commit", "-qm", "symlink tree entry"], { stdio: "ignore" });
+  assert.throws(
+    () => buildPublicSite({ root: target, artifact: join(target, "public-site") }),
+    /must have Git regular-file mode 100644: index\.html/
+  );
+}));
+
+test("treats a changed orchestrator validator as an approved-tooling integrity difference", () => temporaryManifest((root) => {
+  mkdirSync(join(root, "tools"), { recursive: true });
+  writeFileSync(join(root, "tools", "validate-orchestrator.mjs"), "export const revision = 'reviewed';\n");
+  initializeGitRepository(root);
+  const toolingCommitSha = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  writeFileSync(join(root, "tools", "validate-orchestrator.mjs"), "export const revision = 'changed';\n");
+  execFileSync("git", ["-C", root, "add", "tools/validate-orchestrator.mjs"], { stdio: "ignore" });
+  execFileSync("git", ["-C", root, "commit", "-qm", "changed control validator"], { stdio: "ignore" });
+  const controlCommitSha = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  assert.throws(
+    () => execFileSync("git", ["-C", root, "diff", "--exit-code", toolingCommitSha, controlCommitSha, "--", "tools/validate-orchestrator.mjs"], { stdio: "ignore" })
+  );
+}));
+
+test("rejects a linked source directory that points outside the reviewed source root", () => temporaryManifest((root) => {
+  const target = join(root, "release-source");
+  const external = join(root, "external-content");
+  mkdirSync(join(target, "deployment"), { recursive: true });
+  mkdirSync(external, { recursive: true });
+  writeFileSync(join(target, "deployment", "public-assets.json"), JSON.stringify({ schema_version: "1.0.0", files: ["images/injected.txt"] }));
+  writeFileSync(join(external, "injected.txt"), "external content");
+  symlinkSync(external, join(target, "images"), "junction");
+  assert.throws(
+    () => buildPublicSite({ root: target, artifact: join(target, "public-site") }),
+    /source contains a symbolic link or junction: images\/injected\.txt/
+  );
+}));
+
+test("rejects an approved path whose working-tree content differs from its Git revision", () => temporaryManifest((root) => {
+  const target = join(root, "release-source");
+  mkdirSync(join(target, "deployment"), { recursive: true });
+  writeFileSync(join(target, "deployment", "public-assets.json"), JSON.stringify({ schema_version: "1.0.0", files: ["index.html"] }));
+  writeFileSync(join(target, "index.html"), "reviewed");
+  initializeGitRepository(target);
+  writeFileSync(join(target, "index.html"), "modified after review");
+  assert.throws(
+    () => buildPublicSite({ root: target, artifact: join(target, "public-site") }),
+    /differs from the checked-out Git revision: index\.html/
+  );
+}));
 
 test("includes every local HTML asset reference in the manifest", () => {
   const approved = new Set(MANIFEST.files);

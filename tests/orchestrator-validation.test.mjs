@@ -92,8 +92,8 @@ const cases = [
   ["30 rejects malformed dependency arrays", (root) => edit(root, "agents/backlog.json", (data) => { data.tasks[0].dependencies = "PP-002"; }), ["dependencies must be an array"]],
   ["31 rejects unknown dependencies", (root) => edit(root, "agents/backlog.json", (data) => { data.tasks[0].dependencies = ["PP-999"]; }), ["depends on unknown task PP-999"]],
   ["32 rejects circular dependencies", (root) => edit(root, "agents/backlog.json", (data) => { task(data, "PP-001").dependencies = ["PP-002"]; }), ["circular dependency detected"]],
-  ["33 rejects advancing before prerequisites complete", (root) => edit(root, "agents/backlog.json", (data) => { history(task(data, "PP-003"), "in_progress"); }), ["PP-003 cannot be in_progress until dependency PP-002 is complete"]],
-  ["34 rejects completed tasks without evidence", (root) => edit(root, "agents/backlog.json", (data) => { history(task(data, "PP-002"), "complete"); }), ["completion_evidence is required for complete tasks"]],
+  ["33 rejects advancing before prerequisites complete", (root) => edit(root, "agents/backlog.json", (data) => { history(task(data, "PP-002"), "in_progress"); history(task(data, "PP-003"), "in_progress"); }), ["PP-003 cannot be in_progress until dependency PP-002 is complete"]],
+  ["34 rejects completed tasks without evidence", (root) => edit(root, "agents/backlog.json", (data) => { const item = task(data, "PP-002"); history(item, "complete"); item.completion_evidence = []; }), ["completion_evidence is required for complete tasks"]],
   ["35 rejects blocked tasks without reasons", (root) => edit(root, "agents/backlog.json", (data) => { delete task(data, "PP-012").blocked_reason; }), ["blocked_reason must be a nonempty string"]],
   ["36 rejects blocked reasons on non-blocked tasks", (root) => edit(root, "agents/backlog.json", (data) => { task(data, "PP-002").blocked_reason = "Invalid fixture"; }), ["blocked_reason is only permitted for blocked tasks"]],
   ["37 rejects restricted tasks with approval disabled", (root) => edit(root, "agents/backlog.json", (data) => { task(data, "PP-008").approval.required = false; }), ["approval.required must be true for restricted actions"]],
@@ -155,9 +155,13 @@ expectErrors("60 rejects partner authorization tasks without both required gates
   data.partners[0].authorization_task_id = "PP-012";
 }), ["authorization_task_id must identify a task requiring publishing and affiliate_tracking_changes gates"]);
 
-expectErrors("61 rejects deployment decisions without an exact commit SHA", (root) => edit(root, "governance/decision-log.json", (data) => {
+expectErrors("61 rejects deployment decisions without an exact target commit SHA", (root) => edit(root, "governance/decision-log.json", (data) => {
   data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"] })];
-}), ["commit_sha must be a nonempty string"]);
+}), ["target_commit_sha must be a nonempty string"]);
+
+expectErrors("62 rejects deployment decisions without an exact tooling commit SHA", (root) => edit(root, "governance/decision-log.json", (data) => {
+  data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], target_commit_sha: TEST_COMMIT_SHA })];
+}), ["tooling_commit_sha must be a nonempty string"]);
 
 test("accepts a valid, active owner decision for partner verification and publication", () => {
   const errors = fixture((root) => {
@@ -173,7 +177,7 @@ test("accepts a valid owner decision before a restricted task completes", () => 
   const errors = fixture((root) => {
     edit(root, "agents/backlog.json", (data) => completeWithEvidence(task(data, "PP-017"), "2026-10-07T22:23:00Z", "2026-10-07T22:24:00Z"));
     edit(root, "governance/decision-log.json", (data) => {
-      data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], timestamp: "2026-10-07T22:23:30Z", commit_sha: TEST_COMMIT_SHA })];
+      data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], timestamp: "2026-10-07T22:23:30Z", target_commit_sha: TEST_COMMIT_SHA, tooling_commit_sha: TEST_COMMIT_SHA })];
     });
   });
   assert.deepEqual(errors, []);

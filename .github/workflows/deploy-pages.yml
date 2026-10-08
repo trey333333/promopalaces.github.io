@@ -11,6 +11,14 @@ on:
         description: Backlog task ID covered by the deployment decision
         required: true
         type: string
+      target_commit_sha:
+        description: Exact reviewed main-ancestor commit whose public artifact will be deployed
+        required: true
+        type: string
+      tooling_commit_sha:
+        description: Exact reviewed main-ancestor commit containing the approved artifact tooling
+        required: true
+        type: string
 
 permissions: {}
 
@@ -27,10 +35,11 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Check out the approved revision
+      - name: Check out the reviewed authorization control revision
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - name: Set up Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
@@ -42,18 +51,54 @@ jobs:
         env:
           DECISION_ID: ${{ inputs.decision_id }}
           TASK_ID: ${{ inputs.task_id }}
-          COMMIT_SHA: ${{ github.sha }}
-        run: node tools/validate-deployment-authorization.mjs --decision-id "$DECISION_ID" --task-id "$TASK_ID" --commit-sha "$COMMIT_SHA"
-      - name: Run public-artifact checks
+          TARGET_COMMIT_SHA: ${{ inputs.target_commit_sha }}
+          TOOLING_COMMIT_SHA: ${{ inputs.tooling_commit_sha }}
+          CONTROL_COMMIT_SHA: ${{ github.sha }}
+        run: node tools/validate-deployment-authorization.mjs --decision-id "$DECISION_ID" --task-id "$TASK_ID" --target-commit-sha "$TARGET_COMMIT_SHA" --tooling-commit-sha "$TOOLING_COMMIT_SHA" --control-commit-sha "$CONTROL_COMMIT_SHA"
+      - name: Verify reviewed target and tooling history
+        env:
+          TARGET_COMMIT_SHA: ${{ inputs.target_commit_sha }}
+          TOOLING_COMMIT_SHA: ${{ inputs.tooling_commit_sha }}
+          CONTROL_COMMIT_SHA: ${{ github.sha }}
+        run: node tools/validate-deployment-history.mjs --target-commit-sha "$TARGET_COMMIT_SHA" --tooling-commit-sha "$TOOLING_COMMIT_SHA" --control-commit-sha "$CONTROL_COMMIT_SHA"
+      - name: Verify authorization control uses approved workflow and tooling
+        env:
+          TOOLING_COMMIT_SHA: ${{ inputs.tooling_commit_sha }}
+          CONTROL_COMMIT_SHA: ${{ github.sha }}
+        run: git diff --exit-code "$TOOLING_COMMIT_SHA" "$CONTROL_COMMIT_SHA" -- .github/workflows/deploy-pages.yml tools/build-public-site.mjs tools/public-artifact-lib.mjs tools/validate-public-artifact.mjs tools/validate-deployment-authorization.mjs tools/validate-deployment-history.mjs tools/validate-orchestrator.mjs
+      - name: Run authorization-control regression checks
         run: node --test tests/public-artifact.test.mjs tests/deployment-safety.test.mjs
-      - name: Build allowlisted public artifact
-        run: node tools/build-public-site.mjs --artifact public-site
-      - name: Verify public artifact contents
-        run: node tools/validate-public-artifact.mjs --artifact public-site
+      - name: Check out the exact reviewed artifact tooling
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ inputs.tooling_commit_sha }}
+          path: release-tooling
+          persist-credentials: false
+      - name: Check out the exact approved deployment target
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ inputs.target_commit_sha }}
+          path: release-tooling/release-source
+          persist-credentials: false
+      - name: Confirm checked-out tooling and target match approval
+        env:
+          TARGET_COMMIT_SHA: ${{ inputs.target_commit_sha }}
+          TOOLING_COMMIT_SHA: ${{ inputs.tooling_commit_sha }}
+        run: |
+          test "$(git -C release-tooling rev-parse HEAD)" = "$TOOLING_COMMIT_SHA"
+          test "$(git -C release-tooling/release-source rev-parse HEAD)" = "$TARGET_COMMIT_SHA"
+      - name: Build allowlisted target artifact
+        working-directory: release-tooling
+        env:
+          TARGET_COMMIT_SHA: ${{ inputs.target_commit_sha }}
+        run: node tools/build-public-site.mjs --source-root release-source --artifact public-site --expected-commit-sha "$TARGET_COMMIT_SHA"
+      - name: Verify target artifact contents
+        working-directory: release-tooling
+        run: node tools/validate-public-artifact.mjs --source-root release-source --artifact public-site
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
-          path: public-site
+          path: release-tooling/release-source/public-site
 
   deploy:
     name: Deploy reviewed Pages artifact
@@ -68,6 +113,32 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Check out the reviewed authorization-control revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          path: release-control
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check out the current authoritative main state
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: refs/heads/main
+          path: release-control/authorization-state
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Revalidate current authorization immediately before deployment
+        env:
+          DECISION_ID: ${{ inputs.decision_id }}
+          TASK_ID: ${{ inputs.task_id }}
+          TARGET_COMMIT_SHA: ${{ inputs.target_commit_sha }}
+          TOOLING_COMMIT_SHA: ${{ inputs.tooling_commit_sha }}
+          CONTROL_COMMIT_SHA: ${{ github.sha }}
+        run: |
+          git -C release-control/authorization-state merge-base --is-ancestor "$CONTROL_COMMIT_SHA" HEAD
+          git -C release-control diff --exit-code "$TOOLING_COMMIT_SHA" "$CONTROL_COMMIT_SHA" -- .github/workflows/deploy-pages.yml tools/build-public-site.mjs tools/public-artifact-lib.mjs tools/validate-public-artifact.mjs tools/validate-deployment-authorization.mjs tools/validate-deployment-history.mjs tools/validate-orchestrator.mjs
+          node release-control/tools/validate-deployment-history.mjs --repository-root authorization-state --target-commit-sha "$TARGET_COMMIT_SHA" --tooling-commit-sha "$TOOLING_COMMIT_SHA" --control-commit-sha "$CONTROL_COMMIT_SHA"
+          node release-control/tools/validate-deployment-authorization.mjs --governance-root authorization-state --decision-id "$DECISION_ID" --task-id "$TASK_ID" --target-commit-sha "$TARGET_COMMIT_SHA" --tooling-commit-sha "$TOOLING_COMMIT_SHA" --control-commit-sha "$CONTROL_COMMIT_SHA"
       - name: Deploy artifact after environment approval
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

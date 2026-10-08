@@ -54,6 +54,6 @@ A future release request must not proceed until all applicable evidence is compl
 2. Local validation and relevant page/link/accessibility checks pass with recorded results.
 3. Affiliate URLs, disclosures, and tracking impacts are reviewed; tracking changes need their separate gate.
 4. Security and production-configuration impacts are reviewed, with a rollback plan.
-5. The decision log identifies the approver, timestamp, deployment target, and stop/rollback condition.
+5. The decision log identifies the approver, timestamp, exact immutable deployment target, and exact reviewed artifact-tooling commit. For GitHub Pages, record both in a later authorization-control commit; never make a decision authorize the commit that contains the decision itself. The target and tooling must be reviewed first-parent `main` commits, the control commit must not modify bound release tooling, and the protected-environment review must pass before deployment.
 
-This repository currently has no release automation configured by this assignment.
+GitHub Pages release automation is manual-only, target-bound, and protected by the `github-pages` environment. It is not an authorization to deploy by itself.
