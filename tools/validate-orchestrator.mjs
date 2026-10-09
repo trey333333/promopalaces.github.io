@@ -208,7 +208,7 @@ function decisionCheck(log, gateIds, agentIds, errors) {
   const ids = new Set();
   log.entries.forEach((entry, index) => {
     const label = "decision_log.entries[" + index + "]";
-    const optional = ["agent_id", "tool_allowlist", "stop_condition", "revokes_decision_id", "target_commit_sha", "tooling_commit_sha"];
+    const optional = ["agent_id", "tool_allowlist", "stop_condition", "revokes_decision_id", "target_commit_sha", "tooling_commit_sha", "restoration_acknowledgement"];
     entry = shape(entry, label, ["id", "timestamp", "decision_type", "task_id", "gate_ids", "scope", "approver_role", "evidence", "expires_at", "status"], optional, errors);
     const id = text(entry.id, label + ".id", errors, DECISION_ID);
     if (ids.has(id)) errors.push("duplicate decision id: " + id);
@@ -233,6 +233,16 @@ function decisionCheck(log, gateIds, agentIds, errors) {
     } else {
       if (Object.hasOwn(entry, "target_commit_sha")) errors.push(label + ".target_commit_sha is only valid for approved owner_authorization decisions covering deployment");
       if (Object.hasOwn(entry, "tooling_commit_sha")) errors.push(label + ".tooling_commit_sha is only valid for approved owner_authorization decisions covering deployment");
+    }
+    if (Object.hasOwn(entry, "restoration_acknowledgement")) {
+      if (!deploymentAuthorization) errors.push(label + ".restoration_acknowledgement is only valid for approved owner_authorization decisions covering deployment");
+      const acknowledgement = shape(entry.restoration_acknowledgement, label + ".restoration_acknowledgement", ["acknowledged_by", "task_id", "target_commit_sha", "risk_ids"], [], errors);
+      if (acknowledgement.acknowledged_by !== "owner") errors.push(label + ".restoration_acknowledgement.acknowledged_by must be owner");
+      text(acknowledgement.task_id, label + ".restoration_acknowledgement.task_id", errors, TASK_ID);
+      text(acknowledgement.target_commit_sha, label + ".restoration_acknowledgement.target_commit_sha", errors, COMMIT_SHA);
+      if (acknowledgement.task_id !== entry.task_id) errors.push(label + ".restoration_acknowledgement.task_id must match decision task_id");
+      if (acknowledgement.target_commit_sha !== entry.target_commit_sha) errors.push(label + ".restoration_acknowledgement.target_commit_sha must match decision target_commit_sha");
+      strings(acknowledgement.risk_ids, label + ".restoration_acknowledgement.risk_ids", errors);
     }
     if (entry.decision_type === "execution_enablement") {
       const agent = text(entry.agent_id, label + ".agent_id", errors, AGENT_ID);

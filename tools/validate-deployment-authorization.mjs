@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validate } from "./validate-orchestrator.mjs";
+import { validateRestorationAcknowledgement, validateRestorationTarget } from "./validate-restoration-mode.mjs";
 
 const DECISION_ID = /^DEC-\d{3,}$/;
 const TASK_ID = /^PP-\d{3}$/;
@@ -73,6 +74,7 @@ export function validateDeploymentAuthorization({ root, decisionId, taskId, targ
   if (missingGates.length) fail("Approval decision does not cover every required task gate: " + missingGates.join(", ") + ".");
   if (decision.target_commit_sha !== targetCommitSha) fail("Approval decision is not bound to the exact target commit SHA being deployed.");
   if (decision.tooling_commit_sha !== toolingCommitSha) fail("Approval decision is not bound to the exact reviewed tooling commit SHA.");
+  validateRestorationAcknowledgement(decision, validateRestorationTarget(root, targetCommitSha), taskId, targetCommitSha);
   if (new Date(decision.expires_at).valueOf() - new Date(decision.timestamp).valueOf() > MAX_DEPLOYMENT_APPROVAL_MS) fail("Deployment approval validity must not exceed seven days.");
   if (decision.timestamp > effectiveAt || decision.expires_at < effectiveAt) fail("Approval decision is not active at the authorization time.");
 

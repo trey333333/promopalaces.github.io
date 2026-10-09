@@ -33,9 +33,10 @@ test("CI checks out the triggering revision without persisted credentials using 
   assert.match(CI_WORKFLOW, /node-version: 22/);
 });
 
-test("CI runs governance, all regression, and public-artifact validation without publication", () => {
+test("CI validates restoration mode, runs the applicable regression suite, and validates public artifacts without publication", () => {
   assert.match(CI_WORKFLOW, /run: node tools\/validate-orchestrator\.mjs/);
-  assert.match(CI_WORKFLOW, /run: node --test tests\/\*\.test\.mjs/);
+  assert.match(CI_WORKFLOW, /run: node tools\/validate-restoration-mode\.mjs/);
+  assert.match(CI_WORKFLOW, /run: node tools\/run-site-ci\.mjs/);
   assert.match(CI_WORKFLOW, /run: node tools\/build-public-site\.mjs --artifact dist/);
   assert.match(CI_WORKFLOW, /run: node tools\/validate-public-artifact\.mjs --artifact dist/);
   for (const internalPath of ["agents", "affiliates", "governance", "tests", "tools", "docs", "deployment", "AGENTS.md"]) {

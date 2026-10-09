@@ -28,8 +28,10 @@ jobs:
           node-version: 22
       - name: Validate governance metadata
         run: node tools/validate-orchestrator.mjs
-      - name: Run complete regression suite
-        run: node --test tests/*.test.mjs
+      - name: Validate restoration mode when present
+        run: node tools/validate-restoration-mode.mjs
+      - name: Run complete applicable regression suite
+        run: node tools/run-site-ci.mjs
       - name: Build allowlisted public artifact
         run: node tools/build-public-site.mjs --artifact dist
       - name: Validate allowlisted public artifact

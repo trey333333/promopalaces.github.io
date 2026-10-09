@@ -9,6 +9,7 @@ import { buildPublicSite, FORBIDDEN_PUBLIC_FILENAMES, FORBIDDEN_PUBLIC_PATHS, va
 const ROOT = resolve(import.meta.dirname, "..");
 const MANIFEST = JSON.parse(readFileSync(join(ROOT, "deployment/public-assets.json"), "utf8"));
 const WORKFLOW = readFileSync(join(ROOT, ".github", "workflows", "deploy-pages.yml"), "utf8");
+const AUTHORIZATION_VALIDATOR = readFileSync(join(ROOT, "tools", "validate-deployment-authorization.mjs"), "utf8");
 
 function temporaryArtifact(callback) {
   const directory = mkdtempSync(join(tmpdir(), "promopalaces-public-artifact-"));
@@ -84,6 +85,7 @@ test("keeps Pages deployment manual, target-bound, and environment-protected", (
   assert.match(WORKFLOW, /if: github\.ref == 'refs\/heads\/main'/);
   assert.match(WORKFLOW, /environment:\r?\n      name: github-pages/);
   assert.match(WORKFLOW, /validate-deployment-authorization\.mjs/);
+  assert.equal([...WORKFLOW.matchAll(/(?:node |node release-control\/)tools\/validate-deployment-authorization\.mjs/g)].length, 2);
   assert.match(WORKFLOW, /validate-deployment-history\.mjs/);
   assert.match(WORKFLOW, /target_commit_sha:/);
   assert.match(WORKFLOW, /tooling_commit_sha:/);
@@ -101,6 +103,7 @@ test("keeps Pages deployment manual, target-bound, and environment-protected", (
   for (const command of toolingIntegrityCommands) {
     assert.match(command, /tools\/validate-orchestrator\.mjs/);
     assert.match(command, /tools\/validate-deployment-authorization\.mjs/);
+    assert.match(command, /tools\/validate-restoration-mode\.mjs/);
   }
   assert.match(WORKFLOW, /tools\/build-public-site\.mjs --source-root release-source --artifact public-site/);
   assert.match(WORKFLOW, /tools\/validate-public-artifact\.mjs --source-root release-source --artifact public-site/);
@@ -109,6 +112,8 @@ test("keeps Pages deployment manual, target-bound, and environment-protected", (
   assert.match(WORKFLOW, /ref: refs\/heads\/main/);
   assert.match(WORKFLOW, /--governance-root authorization-state/);
   assert.match(WORKFLOW, /Revalidate current authorization immediately before deployment[\s\S]*uses: actions\/deploy-pages/);
+  assert.match(AUTHORIZATION_VALIDATOR, /validateRestorationTarget\(root, targetCommitSha\)/);
+  assert.match(AUTHORIZATION_VALIDATOR, /validateRestorationAcknowledgement\(decision, validateRestorationTarget\(root, targetCommitSha\), taskId, targetCommitSha\)/);
   assert.doesNotMatch(WORKFLOW, /--commit-sha/);
   assert.match(WORKFLOW, /persist-credentials: false/);
   for (const action of ["actions/checkout", "actions/setup-node", "actions/upload-pages-artifact", "actions/deploy-pages"]) {
@@ -156,6 +161,20 @@ test("treats a changed orchestrator validator as an approved-tooling integrity d
   const controlCommitSha = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
   assert.throws(
     () => execFileSync("git", ["-C", root, "diff", "--exit-code", toolingCommitSha, controlCommitSha, "--", "tools/validate-orchestrator.mjs"], { stdio: "ignore" })
+  );
+}));
+
+test("treats a changed restoration-mode validator as an approved-tooling integrity difference", () => temporaryManifest((root) => {
+  mkdirSync(join(root, "tools"), { recursive: true });
+  writeFileSync(join(root, "tools", "validate-restoration-mode.mjs"), "export const revision = 'reviewed';\n");
+  initializeGitRepository(root);
+  const toolingCommitSha = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  writeFileSync(join(root, "tools", "validate-restoration-mode.mjs"), "export const revision = 'changed';\n");
+  execFileSync("git", ["-C", root, "add", "tools/validate-restoration-mode.mjs"], { stdio: "ignore" });
+  execFileSync("git", ["-C", root, "commit", "-qm", "changed restoration-mode validator"], { stdio: "ignore" });
+  const controlCommitSha = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  assert.throws(
+    () => execFileSync("git", ["-C", root, "diff", "--exit-code", toolingCommitSha, controlCommitSha, "--", "tools/validate-restoration-mode.mjs"], { stdio: "ignore" })
   );
 }));
 

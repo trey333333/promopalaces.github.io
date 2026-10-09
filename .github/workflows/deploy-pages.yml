@@ -65,7 +65,7 @@ jobs:
         env:
           TOOLING_COMMIT_SHA: ${{ inputs.tooling_commit_sha }}
           CONTROL_COMMIT_SHA: ${{ github.sha }}
-        run: git diff --exit-code "$TOOLING_COMMIT_SHA" "$CONTROL_COMMIT_SHA" -- .github/workflows/deploy-pages.yml tools/build-public-site.mjs tools/public-artifact-lib.mjs tools/validate-public-artifact.mjs tools/validate-deployment-authorization.mjs tools/validate-deployment-history.mjs tools/validate-orchestrator.mjs
+        run: git diff --exit-code "$TOOLING_COMMIT_SHA" "$CONTROL_COMMIT_SHA" -- .github/workflows/deploy-pages.yml tools/build-public-site.mjs tools/public-artifact-lib.mjs tools/validate-public-artifact.mjs tools/validate-deployment-authorization.mjs tools/validate-deployment-history.mjs tools/validate-orchestrator.mjs tools/validate-restoration-mode.mjs
       - name: Run authorization-control regression checks
         run: node --test tests/public-artifact.test.mjs tests/deployment-safety.test.mjs
       - name: Check out the exact reviewed artifact tooling
@@ -136,7 +136,7 @@ jobs:
           CONTROL_COMMIT_SHA: ${{ github.sha }}
         run: |
           git -C release-control/authorization-state merge-base --is-ancestor "$CONTROL_COMMIT_SHA" HEAD
-          git -C release-control diff --exit-code "$TOOLING_COMMIT_SHA" "$CONTROL_COMMIT_SHA" -- .github/workflows/deploy-pages.yml tools/build-public-site.mjs tools/public-artifact-lib.mjs tools/validate-public-artifact.mjs tools/validate-deployment-authorization.mjs tools/validate-deployment-history.mjs tools/validate-orchestrator.mjs
+          git -C release-control diff --exit-code "$TOOLING_COMMIT_SHA" "$CONTROL_COMMIT_SHA" -- .github/workflows/deploy-pages.yml tools/build-public-site.mjs tools/public-artifact-lib.mjs tools/validate-public-artifact.mjs tools/validate-deployment-authorization.mjs tools/validate-deployment-history.mjs tools/validate-orchestrator.mjs tools/validate-restoration-mode.mjs
           node release-control/tools/validate-deployment-history.mjs --repository-root authorization-state --target-commit-sha "$TARGET_COMMIT_SHA" --tooling-commit-sha "$TOOLING_COMMIT_SHA" --control-commit-sha "$CONTROL_COMMIT_SHA"
           node release-control/tools/validate-deployment-authorization.mjs --governance-root authorization-state --decision-id "$DECISION_ID" --task-id "$TASK_ID" --target-commit-sha "$TARGET_COMMIT_SHA" --tooling-commit-sha "$TOOLING_COMMIT_SHA" --control-commit-sha "$CONTROL_COMMIT_SHA"
       - name: Deploy artifact after environment approval
