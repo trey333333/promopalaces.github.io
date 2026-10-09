@@ -163,6 +163,10 @@ expectErrors("62 rejects deployment decisions without an exact tooling commit SH
   data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], target_commit_sha: TEST_COMMIT_SHA })];
 }), ["tooling_commit_sha must be a nonempty string"]);
 
+expectErrors("63 rejects an unbound restoration acknowledgement", (root) => edit(root, "governance/decision-log.json", (data) => {
+  data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], target_commit_sha: TEST_COMMIT_SHA, tooling_commit_sha: TEST_COMMIT_SHA, restoration_acknowledgement: { acknowledged_by: "owner", risk_ids: ["missing_adjacent_affiliate_disclosure"] } })];
+}), ["restoration_acknowledgement.task_id is required", "restoration_acknowledgement.target_commit_sha is required"]);
+
 test("accepts a valid, active owner decision for partner verification and publication", () => {
   const errors = fixture((root) => {
     edit(root, "affiliates/partners.json", (data) => promotePartner(data.partners[0]));

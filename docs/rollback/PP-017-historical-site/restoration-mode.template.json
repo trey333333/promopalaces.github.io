@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "historical_restoration",
+  "package": {
+    "package_id": "PP-017-historical-site-restoration",
+    "historical_source_commit": "a1f732de923d90767a0a7236afeb1ac72342292b",
+    "manifest_sha256": "cf982cdc6e7f8edd7210d038c5ca5859325b392c50682267d66313e4af5fb1e7",
+    "source_directory": "source",
+    "source_file_count": 31
+  },
+  "owner_acknowledgement": {
+    "required": true,
+    "risk_ids": [
+      "missing_adjacent_affiliate_disclosure",
+      "blank_affiliate_aid_parameter",
+      "missing_sponsored_link_attributes"
+    ]
+  }
+}

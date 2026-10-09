@@ -1,0 +1,254 @@
+/* ==== Global Image Handling ==== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==== Fix for Navbar Logo Size ==== */
+.navbar-brand img {
+  height: 40px !important;
+  width: auto;
+  max-height: 40px;
+}
+
+/* ==== Hero Banner Styling ==== */
+.hero-banner {
+  background-color: #212529;
+  color: #fff;
+}
+
+/* Header Intro Text Style (for text above the video) */
+.header-intro-text {
+  font-size: calc(1.1rem + 0.8vw); /* Responsive font size */
+  line-height: 1.4;
+  margin-bottom: 1.5rem; /* Space between text and video */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+  color: white; /* Ensure text is white */
+  text-align: center; /* Ensure it's centered */
+  white-space: nowrap; /* Keep text on a single line */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Add ellipsis for overflow */
+}
+
+/* Style for the descriptive text below the video */
+.video-description-text {
+  font-size: calc(0.9rem + 0.5vw); /* Slightly smaller, responsive font size */
+  line-height: 1.3;
+  margin-top: 1.5rem; /* Space between video and text */
+  color: white; /* Ensure text is white */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+  text-align: center; /* Ensure it's centered */
+}
+
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 350px; /* Fixed height for the video frame */
+  overflow: hidden; /* Ensure video doesn't spill out */
+  border-radius: 8px; /* Maintain rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Maintain shadow */
+  display: flex; /* For centering video content */
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa; /* Fallback background if video doesn't load */
+}
+
+.header-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video covers the container without distortion */
+  display: block; /* Remove any extra space below video */
+}
+
+
+/* Limit and scale banner images (e.g. Sale & USA made) */
+.hero-banner img {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ==== Sidebar Styling ==== */
+.sidebar {
+  border-right: 1px solid #dee2e6;
+  padding-top: 1rem;
+  min-height: 100%;
+  background-color: #fff;
+}
+
+.sidebar h6 {
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  color: #444;
+}
+
+.sidebar .nav-link {
+  color: #333;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #f0f0f0;
+  text-decoration: none;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.toggle-btn:hover {
+  text-decoration: underline;
+}
+
+/* ==== Product Card Styling ==== */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 0.85rem;
+}
+
+/* Product card images */
+.card-img-top {
+  object-fit: contain;
+  height: 180px;
+  width: 100%;
+}
+
+/* ==== Button Styling ==== */
+.btn-flare {
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-flare:hover {
+  background-color: #f0ad4e;
+  color: #fff;
+}
+
+/* ==== Featured Section ==== */
+section.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* ==== Footer Styling ==== */
+footer small {
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+/* Responsive wider search bar */
+@media (min-width: 768px) {
+  .navbar form .form-control {
+    min-width: 350px;
+  }
+}
+
+/* Align hero banner side items */
+.hero-banner .col-md-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+/* Center image and text in hero columns */
+.hero-banner .col-md-3 a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Center the Shop Now button in the hero banner */
+.hero-banner .btn {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Center the Get Started Today button */
+section .btn-success {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Animate buttons on hover */
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Smooth default transition */
+.btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Responsive font size for smaller screens for header-intro-text and video-description-text */
+@media (max-width: 768px) {
+  .header-intro-text {
+    font-size: 1.2rem; /* Adjusted font size for smaller screens to prevent truncation */
+  }
+  .video-description-text {
+    font-size: 0.8rem; /* Adjusted font size for smaller screens */
+  }
+}
+
+/* The following commented-out rules were redundant or conflicting with the new header-intro-text styles. */
+/* Keep headline on one line by default */
+/* .hero-banner h1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 2.5rem;
+} */
+
+/* On small screens, shrink font so it fits */
+/* @media (max-width: 768px) {
+  .hero-banner h1 {
+    font-size: 1.5rem;
+  }
+} */
+
+/* Center and style two-line hero headline */
+/* .hero-headline {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+} */
+
+/* Responsive font size for smaller screens */
+/* @media (max-width: 768px) {
+  .hero-headline {
+    font-size: 1.7rem;
+  }
+} */

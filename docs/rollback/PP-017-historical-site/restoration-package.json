@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "PP-017-historical-site-restoration",
+  "internal_only": true,
+  "historical_source_commit": "a1f732de923d90767a0a7236afeb1ac72342292b",
+  "current_marketplace_target_commit": "2f607bba20ce8591d9a5d15509cd4699d06e80b9",
+  "approved_deployment_tooling_baseline": "419fa0ccb9d3edde36bd9cff1148de41444097ef",
+  "source_directory": "source",
+  "manifest": "legacy-public-assets.json",
+  "public_file_count": 31,
+  "historical_asset_exclusions": [
+    {
+      "path": "images/Apparel.png",
+      "reason": "This unreferenced asset conflicts by case with the referenced images/apparel.png on case-insensitive filesystems. The portable restoration package preserves the referenced lowercase asset instead."
+    }
+  ],
+  "promotion_requirements": [
+    "Create a new reviewed restoration target commit on main from this package; do not deploy this package directly.",
+    "Create a later reviewed tooling-binding commit after the restoration target.",
+    "Create a still-later authorization-control commit containing a genuine owner decision for PP-017.",
+    "Use the protected github-pages environment review before deployment."
+  ]
+}
