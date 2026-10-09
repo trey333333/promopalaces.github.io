@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, relative, resolve } from "node:path";
@@ -23,6 +24,10 @@ function walkFiles(directory, prefix = "") {
 
 function historicalFile(path) {
   return execFileSync("git", ["show", PACKAGE.historical_source_commit + ":" + path], { cwd: ROOT, maxBuffer: 64 * 1024 * 1024 });
+}
+
+function packageFile(path) {
+  return execFileSync("git", ["show", "HEAD:docs/rollback/PP-017-historical-site/" + path], { cwd: ROOT, maxBuffer: 64 * 1024 * 1024 });
 }
 
 function temporaryRestorationRepository(callback) {
@@ -76,8 +81,9 @@ test("contains an exact, portable 31-file copy of the historical public source",
   assert.ok(MANIFEST.files.includes("images/apparel.png"));
   assert.ok(!MANIFEST.files.includes("images/Apparel.png"));
   assert.deepEqual(walkFiles(SOURCE_ROOT), [...MANIFEST.files].sort());
+  assert.equal(createHash("sha256").update(packageFile("legacy-public-assets.json")).digest("hex"), "cf982cdc6e7f8edd7210d038c5ca5859325b392c50682267d66313e4af5fb1e7");
   for (const path of MANIFEST.files) {
-    assert.deepEqual(readFileSync(join(SOURCE_ROOT, ...path.split("/"))), historicalFile(path), "Historical content mismatch: " + path);
+    assert.deepEqual(packageFile("source/" + path), historicalFile(path), "Historical Git blob mismatch: " + path);
     assert.ok(!path.split("/").some((segment) => ["agents", "affiliates", "governance", "tests", "tools", "docs", "deployment"].includes(segment)));
   }
 });
