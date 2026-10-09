@@ -60,6 +60,13 @@ function temporaryInvalidModeRepository(mutator, callback) {
   }
 }
 
+function writeWindowsLineEndings(root, relativePath) {
+  const path = join(root, ...relativePath.split("/"));
+  const text = readFileSync(path, "utf8").replaceAll("\r\n", "\n");
+  writeFileSync(path, text.replaceAll("\n", "\r\n"));
+  execFileSync("git", ["-C", root, "diff", "--quiet", "HEAD", "--", relativePath], { stdio: "ignore" });
+}
+
 test("normal marketplace CI selects every regression test, including strict marketplace checks", () => {
   const suite = selectSiteCiSuite(ROOT);
   assert.equal(suite.mode, "marketplace");
@@ -103,4 +110,18 @@ test("a legitimate simulated restoration commit passes the complete applicable C
   assert.deepEqual(buildPublicSite({ root, artifact }), [...MANIFEST_DATA.files].sort());
   assert.deepEqual(validatePublicArtifact({ root, artifact }), [...MANIFEST_DATA.files].sort());
   assert.ok(!MANIFEST_DATA.files.some((path) => path.startsWith("governance/") || path.startsWith("docs/") || path.startsWith("agents/") || path.startsWith("affiliates/")));
+}));
+
+test("validates identical restoration Git blobs from LF and simulated Windows CRLF checkouts", () => temporaryRestorationRepository({}, (root) => {
+  const linuxResult = validateRestorationMode(root);
+  execFileSync("git", ["-C", root, "config", "core.autocrlf", "true"], { stdio: "ignore" });
+  for (const path of [
+    "deployment/restoration-mode.json",
+    "deployment/public-assets.json",
+    "docs/rollback/PP-017-historical-site/legacy-public-assets.json",
+    "docs/rollback/PP-017-historical-site/source/about.html"
+  ]) writeWindowsLineEndings(root, path);
+  const windowsResult = validateRestorationMode(root);
+  assert.deepEqual(windowsResult.packageManifest, linuxResult.packageManifest);
+  assert.equal(windowsResult.target_commit_sha, linuxResult.target_commit_sha);
 }));

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, lstatSync, readFileSync } from "node:fs";
+import { existsSync, lstatSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -102,8 +102,12 @@ function trackedRegularFile(root, relativePath) {
   return fullPath;
 }
 
-function bytes(root, relativePath) {
-  return readFileSync(trackedRegularFile(root, relativePath));
+function trackedGitBytes(root, revision, relativePath) {
+  // Keep the filesystem checks so a missing, linked, or modified worktree file
+  // fails locally, but verify raw bytes from the immutable Git revision. This
+  // avoids accepting platform-specific CRLF checkout conversion as source drift.
+  trackedRegularFile(root, relativePath);
+  return gitRegularFileBytes(root, revision, relativePath);
 }
 
 function safeManifestPath(path) {
@@ -171,8 +175,9 @@ export function validateRestorationMode(root) {
     return validateRestorationTarget(repositoryRoot, head);
   }
 
+  const head = git(repositoryRoot, ["rev-parse", "HEAD"]);
   trackedRegularFile(repositoryRoot, RESTORATION_MODE_PATH);
-  return validateRestorationRevision(repositoryRoot, (relativePath) => bytes(repositoryRoot, relativePath));
+  return validateRestorationRevision(repositoryRoot, (relativePath) => trackedGitBytes(repositoryRoot, head, relativePath), head);
 }
 
 export function validateRestorationTarget(root, targetCommitSha) {
