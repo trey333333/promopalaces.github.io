@@ -1,4 +1,29 @@
 {
   "schema_version": "1.1.0",
-  "entries": []
+  "entries": [
+    {
+      "id": "DEC-017",
+      "timestamp": "2026-10-09T06:28:06Z",
+      "decision_type": "owner_authorization",
+      "task_id": "PP-017",
+      "gate_ids": [
+        "production_configuration",
+        "deployment"
+      ],
+      "scope": "Publish the existing reviewed 49-file PromoPalaces business marketplace to https://promopalaces.com from target 2f607bba20ce8591d9a5d15509cd4699d06e80b9 using reviewed tooling 92845a801b63ebe02acac146ba53fab66686cce6. No website-content, affiliate-link, affiliate-tracking, coupon, partner-activation, or offer changes are authorized.",
+      "approver_role": "owner",
+      "evidence": [
+        "Owner authorization: the PromoPalaces owner explicitly approved PP-017 production deployment on 2026-10-09 for the exact scope recorded in this decision.",
+        "Production configuration evidence: the owner confirmed GitHub Pages uses GitHub Actions for promopalaces.com; the reviewed manual-only, main-restricted workflow and CNAME are bound by tooling 92845a801b63ebe02acac146ba53fab66686cce6. Protected github-pages environment approval remains pending and is not claimed by this record.",
+        "Security review: reviewed tooling 92845a801b63ebe02acac146ba53fab66686cce6 retains exact target and tooling binding, Git regular-file and linked-source protection, first-parent history checks, expiry and revocation revalidation, and protected-environment deployment review.",
+        "Validation evidence: local orchestration validation, the complete 138-test regression suite, the 49-file allowlisted marketplace artifact, and the 31-file historical restoration package passed validation on 2026-10-09.",
+        "Release checklist: the documented GitHub Pages runbook requires manual dispatch from a later authorization-control commit on main with the exact decision ID, task ID, target SHA, and tooling SHA.",
+        "Rollback plan: the owner accepts temporary downtime and documented historical rollback limitations; any rollback requires a separately reviewed target and tooling pair, a new owner decision, and protected github-pages environment review."
+      ],
+      "expires_at": "2026-10-16T06:28:06Z",
+      "status": "approved",
+      "target_commit_sha": "2f607bba20ce8591d9a5d15509cd4699d06e80b9",
+      "tooling_commit_sha": "92845a801b63ebe02acac146ba53fab66686cce6"
+    }
+  ]
 }
