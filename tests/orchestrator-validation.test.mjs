@@ -167,11 +167,17 @@ expectErrors("63 rejects an unbound restoration acknowledgement", (root) => edit
   data.entries = [decision({ task_id: "PP-017", gate_ids: ["production_configuration", "deployment"], target_commit_sha: TEST_COMMIT_SHA, tooling_commit_sha: TEST_COMMIT_SHA, restoration_acknowledgement: { acknowledged_by: "owner", risk_ids: ["missing_adjacent_affiliate_disclosure"] } })];
 }), ["restoration_acknowledgement.task_id is required", "restoration_acknowledgement.target_commit_sha is required"]);
 
+expectErrors("64 rejects PP-017 closeout without its recorded owner decision", (root) => edit(root, "governance/decision-log.json", (data) => {
+  data.entries = [];
+}), ["PP-017 is complete without an active owner decision for all required gates"]);
+
 test("accepts a valid, active owner decision for partner verification and publication", () => {
   const errors = fixture((root) => {
     edit(root, "affiliates/partners.json", (data) => promotePartner(data.partners[0]));
     edit(root, "governance/decision-log.json", (data) => {
-      data.entries = [decision({ task_id: "PP-014", gate_ids: ["publishing", "affiliate_tracking_changes"], timestamp: "2026-10-07T22:25:00Z" })];
+      const completedPp017Decision = data.entries.find((entry) => entry.id === "DEC-017");
+      assert.ok(completedPp017Decision, "PP-017 closeout decision must be present in the baseline fixture.");
+      data.entries = [completedPp017Decision, decision({ task_id: "PP-014", gate_ids: ["publishing", "affiliate_tracking_changes"], timestamp: "2026-10-07T22:25:00Z" })];
     });
   });
   assert.deepEqual(errors, []);

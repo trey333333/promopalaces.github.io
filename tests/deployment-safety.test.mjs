@@ -18,11 +18,20 @@ const OTHER_TARGET_SHA = "cccccccccccccccccccccccccccccccccccccccc";
 const TOOLING_COMMIT_SHA = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 const CONTROL_COMMIT_SHA = "dddddddddddddddddddddddddddddddddddddddd";
 const AT = "2026-10-07T23:34:00Z";
+const PRODUCTION_CLOSEOUT = {
+  decisionId: "DEC-017",
+  taskId: "PP-017",
+  targetCommitSha: "2f607bba20ce8591d9a5d15509cd4699d06e80b9",
+  toolingCommitSha: "92845a801b63ebe02acac146ba53fab66686cce6",
+  controlCommitSha: "a3348b010219eebf2eafffaf2df913e7a92cc7ab",
+  at: "2026-10-09T06:44:09Z"
+};
 
 function fixture(mutate) {
   const root = mkdtempSync(join(tmpdir(), "promopalaces-deployment-safety-"));
   try {
     for (const directory of ["agents", "affiliates", "governance"]) cpSync(join(SOURCE, directory), join(root, directory), { recursive: true });
+    const completedPp017Decision = JSON.parse(readFileSync(join(root, "governance", "decision-log.json"), "utf8")).entries.find((entry) => entry.id === "DEC-017");
     git(root, ["init", "-q"]);
     git(root, ["config", "user.email", "test@example.invalid"]);
     git(root, ["config", "user.name", "PromoPalaces Test"]);
@@ -30,11 +39,19 @@ function fixture(mutate) {
     git(root, ["commit", "-qm", "approved marketplace target"]);
     const targetCommitSha = git(root, ["rev-parse", "HEAD"]);
     mutate(root, targetCommitSha);
+    preserveCompletedPp017Decision(root, completedPp017Decision);
     return { root, targetCommitSha };
   } catch (error) {
     rmSync(root, { recursive: true, force: true });
     throw error;
   }
+}
+
+function preserveCompletedPp017Decision(root, decision) {
+  if (!decision) throw new Error("PP-017 closeout decision fixture is missing.");
+  edit(root, "governance/decision-log.json", (data) => {
+    if (!data.entries.some((entry) => entry.id === decision.id)) data.entries.push(structuredClone(decision));
+  });
 }
 
 function edit(root, relativePath, mutate) {
@@ -83,6 +100,19 @@ function authorization(root, targetCommitSha, overrides = {}) {
     ...overrides
   });
 }
+
+test("accepts the recorded PP-017 production closeout binding", () => {
+  const decision = validateDeploymentAuthorization({ root: SOURCE, ...PRODUCTION_CLOSEOUT });
+  assert.equal(decision.id, PRODUCTION_CLOSEOUT.decisionId);
+  assert.deepEqual(
+    validateDeploymentHistory({ repositoryRoot: SOURCE, ...PRODUCTION_CLOSEOUT }),
+    {
+      targetCommitSha: PRODUCTION_CLOSEOUT.targetCommitSha,
+      toolingCommitSha: PRODUCTION_CLOSEOUT.toolingCommitSha,
+      controlCommitSha: PRODUCTION_CLOSEOUT.controlCommitSha
+    }
+  );
+});
 
 test("accepts a deployment audit record bound to the exact target commit", () => withFixture((root, targetCommitSha) => {
   edit(root, "governance/decision-log.json", (data) => { data.entries = [deploymentDecision(targetCommitSha)]; });
@@ -291,7 +321,13 @@ function restorationAcknowledgement(targetCommitSha, overrides = {}) {
 }
 
 function writeDecisionLog(root, entries) {
-  writeFileSync(join(root, "governance", "decision-log.json"), JSON.stringify({ schema_version: "1.1.0", entries }, null, 2) + "\n");
+  const existing = JSON.parse(readFileSync(join(root, "governance", "decision-log.json"), "utf8")).entries;
+  const completedPp017Decision = existing.find((entry) => entry.id === "DEC-017");
+  if (!completedPp017Decision) throw new Error("PP-017 closeout decision fixture is missing.");
+  const retained = entries.some((entry) => entry.id === completedPp017Decision.id)
+    ? entries
+    : [...entries, structuredClone(completedPp017Decision)];
+  writeFileSync(join(root, "governance", "decision-log.json"), JSON.stringify({ schema_version: "1.1.0", entries: retained }, null, 2) + "\n");
 }
 
 function withHistoricalRestorationFixture({ includeAcknowledgement = true } = {}, assertion) {
